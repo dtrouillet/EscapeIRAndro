@@ -6,7 +6,7 @@ import org.jbox2d.common.Vec2;
 
 import android.os.AsyncTask;
 import fr.esipe.game.ship.SpaceShip;
-
+//ok
 public class CalculPosition extends AsyncTask<ArrayList<SpaceShip>, Void, Vec2>{
 
 	@Override
