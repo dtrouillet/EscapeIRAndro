@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ android:orientation="vertical"
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"
+ >
+  <Button
+    android:id="@+id/jouer"
+    android:layout_width="188dip"
+    android:layout_height="100dip"
+    android:text="Jouer"
+    android:layout_centerInParent="true"
+    android:textSize="48sp" android:textStyle="bold" />
+
+  <Button
+    android:id="@+id/builder"
+    android:layout_width="188dip"
+    android:layout_height="100dip"
+    android:text="Builder"
+    android:layout_centerHorizontal="true"
+    android:layout_above="@id/jouer"
+    android:layout_marginBottom="30dip"
+    android:textSize="48sp" android:textStyle="bold" />
+
+  <Button
+    android:id="@+id/quitter"
+    android:layout_width="188dip"
+    android:layout_height="100dip"
+    android:text="Quitter"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@id/jouer"
+    android:layout_marginTop="30dip"
+    android:textSize="48sp" android:textStyle="bold" />
+
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EscapeIr</string>
+    <string name="action_settings_pause">Pause</string>
+    <string name="action_settings_return">Retour menu</string>
+    <string name="action_settings_exit">Quitter</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

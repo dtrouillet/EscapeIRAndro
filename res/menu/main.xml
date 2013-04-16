@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings_pause"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings_pause"/>
+    
+     <item
+        android:id="@+id/action_settings_return"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings_return"/>
+     
+      <item
+        android:id="@+id/action_settings_exit"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings_exit"/>
+
+</menu>
