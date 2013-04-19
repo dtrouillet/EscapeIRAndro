@@ -59,6 +59,8 @@ public class GameThread extends Thread {
     /** The tiles. */
     private Bitmap tiles;
     private Bitmap weaponMissile;
+    private Bitmap weaponFireBall;
+    private Bitmap weaponShibooleet;
    // private Bitmap lifeMiddle;
     //private Bitmap lifeLow;
     private Bitmap underLife;
@@ -85,6 +87,8 @@ public class GameThread extends Thread {
         this.context = context;
         this.tiles = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.earth);
         this.weaponMissile = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponmissile);
+        this.weaponFireBall = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponfireball);
+        this.weaponShibooleet = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponshibooleet);
         this.underLife = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.underlife);
         this.life = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.life);
        // this.lifeLow = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.lifelow);
@@ -212,18 +216,23 @@ public class GameThread extends Thread {
 	        RectF dst = new RectF(10, 10, 80, 80);
 	        canvas.drawBitmap(weaponMissile, screenRect, dst, null);
 	        
+	        dst.set(100, 10, 170, 80);
+	        canvas.drawBitmap(weaponFireBall, screenRect, dst, null);
+	        
+	        dst.set(190, 10, 260, 80);
+	        canvas.drawBitmap(weaponShibooleet, screenRect, dst, null);
 	      //Affichage LIFE AND SCORE
 //			graphics.drawImage(Utils.createImage("underLife.png"), 410, 10, 270, 35, null);
 			
-			dst = new RectF(Constant.WIDTH - 280, 10, Constant.WIDTH-10, 45);
+			dst = new RectF(Constant.WIDTH - 200, 10, Constant.WIDTH-10, 45);
 	        canvas.drawBitmap(underLife, null, dst, null);
 			
 	        int lifeH = hero.getLife();
 			if(lifeH > 100){
-				dst = new RectF(Constant.WIDTH - 277, 13, Constant.WIDTH-13, 42);
+				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-13, 42);
 		        canvas.drawBitmap(life, null, dst, null);
 			}else{
-				dst = new RectF(Constant.WIDTH - 277, 13, Constant.WIDTH-(13+(100-lifeH)), 42);
+				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-(13+(100-lifeH)), 42);
 		        canvas.drawBitmap(life, null, dst, null);
 			}
 //				graphics.drawImage(Utils.createImage("life.png"), 413, 13, (int)(100*2.64), 29, null);
