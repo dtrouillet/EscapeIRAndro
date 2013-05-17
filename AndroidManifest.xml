@@ -19,6 +19,16 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="portrait"
              >
+             
+            
+        </activity>
+        <activity
+            android:name="fr.esipe.game.escapeir.Builder"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait"
+             >
+             
             
         </activity>
         <activity

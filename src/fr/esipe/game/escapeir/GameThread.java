@@ -187,8 +187,8 @@ public class GameThread extends Thread {
         		}
         		
         		if(menuCreate == 0){
-        			Intent intent = new Intent(context, MenuActivity.class);
-        			context.startActivity(intent); //intent must be declared
+        			//Intent intent = new Intent(context, MenuActivity.class);
+        			//context.startActivity(intent); //intent must be declared
         			menuCreate++;
         		}
           	    ((Activity)context).finish();

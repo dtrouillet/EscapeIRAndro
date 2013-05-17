@@ -19,28 +19,30 @@ public class MenuActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
 		Button jouerButton =  (Button) findViewById(R.id.jouer);
+		Button builderButton =  (Button) findViewById(R.id.builder);
 		Button quitterButton = (Button) findViewById(R.id.quitter);
-		
-		jouerButton.setOnClickListener(new OnClickListener() {
-			
+		OnClickListener menuListener = new OnClickListener() {
+
 			@Override
 			public void onClick(View arg0) {
-				 Intent intent = new Intent(MenuActivity.this, MainActivity.class);
-				 MenuActivity.this.startActivity(intent); //intent must be declared
-	       	    ((Activity)MenuActivity.this).finish();
-	       	    finish();
+				Intent intent =null;
+				switch(arg0.getId()){
+				case R.id.jouer:  intent = new Intent(MenuActivity.this, MainActivity.class);break;
+				case R.id.builder:  intent = new Intent(MenuActivity.this, Builder.class);break;
+				case R.id.quitter: finish();return;
+				default: return;
+				}
+
+				MenuActivity.this.startActivity(intent); //intent must be declared
+				//((Activity)MenuActivity.this).finish();
+				//finish();
 			}
-		});
-		
-		quitterButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-		
-		
+		};
+		jouerButton.setOnClickListener(menuListener);
+		builderButton.setOnClickListener(menuListener);
+		quitterButton.setOnClickListener(menuListener);
+
+
 	}
 
 	@Override
@@ -58,22 +60,22 @@ public class MenuActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    if(resultCode == 0) {
-	        finish();
-	    }
+		if(resultCode == 0) {
+			finish();
+		}
 	}
-	
+
 	@Override
 	protected void onStop() {
 		System.out.println("stopMe");
 		//finish();
 		super.onStop();
 	}
-	
+
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
 		return true;
 	}
-	
+
 }
