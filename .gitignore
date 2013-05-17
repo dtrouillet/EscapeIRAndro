@@ -28,4 +28,4 @@ local.properties
 
 *.class
 
-bin/classes/fr/esipe/game/escapeir/MapView.class
+bin/
