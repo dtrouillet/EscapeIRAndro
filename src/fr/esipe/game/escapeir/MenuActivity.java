@@ -3,6 +3,7 @@ package fr.esipe.game.escapeir;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ public class MenuActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("MenuActivity","onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
 		Button jouerButton =  (Button) findViewById(R.id.jouer);
@@ -24,6 +26,7 @@ public class MenuActivity extends Activity {
 					 Intent intent = new Intent(MenuActivity.this, MainActivity.class);
 					 MenuActivity.this.startActivity(intent); //intent must be declared
 		       	    ((Activity)MenuActivity.this).finish();
+		       	    finish();
 				}
 			});
 	}

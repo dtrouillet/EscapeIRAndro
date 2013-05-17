@@ -76,12 +76,7 @@ public class MapView extends SurfaceView implements Callback {
             } catch (InterruptedException e) {
             }
         }
-  	    Intent intent = new Intent(context, MenuActivity.class);
-
-  	    context.startActivity(intent); //intent must be declared
-  	    
-  	    ((Activity)context).finish();
-        
+        ((Activity)context).setResult(0);
     }
     
     @Override

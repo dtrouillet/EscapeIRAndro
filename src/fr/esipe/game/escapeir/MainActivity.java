@@ -3,6 +3,7 @@ package fr.esipe.game.escapeir;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("MainActivity", "onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -20,6 +22,7 @@ public class MainActivity extends Activity {
 	protected void onStop() {
 		System.out.println("stop");
 		super.onStop();
+		finish();
 	}
 	
 	

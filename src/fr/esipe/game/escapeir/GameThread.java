@@ -144,7 +144,7 @@ public class GameThread extends Thread {
 		
 		world.setContactListener(new BodyContactListener());
 		int start = (int) System.currentTimeMillis();
-		
+		int menuCreate = 0;
 
         
         while (running) {
@@ -185,11 +185,14 @@ public class GameThread extends Thread {
 	                    holder.unlockCanvasAndPost(canvas);
 	                }
         		}
-          	    Intent intent = new Intent(context, MenuActivity.class);
-
-          	    context.startActivity(intent); //intent must be declared
-          	    
+        		
+        		if(menuCreate == 0){
+        			Intent intent = new Intent(context, MenuActivity.class);
+        			context.startActivity(intent); //intent must be declared
+        			menuCreate++;
+        		}
           	    ((Activity)context).finish();
+          	   
         	}
         }
     }
