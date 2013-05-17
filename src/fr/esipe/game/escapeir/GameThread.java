@@ -10,7 +10,6 @@ import org.jbox2d.dynamics.World;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -69,6 +68,7 @@ public class GameThread extends Thread {
 	private final Random rand = new Random();
 	private SpaceShip hero;
 	private World world;
+
 
 
     /** The level. */
@@ -144,10 +144,28 @@ public class GameThread extends Thread {
 		
 		world.setContactListener(new BodyContactListener());
 		int start = (int) System.currentTimeMillis();
-		int menuCreate = 0;
-
+		
+		double current_time = 0;
+        double last_time = 0;
+        int n = 0;
+        int fps = n;
         
         while (running) {
+        	
+            
+
+            n++;
+            current_time = System.currentTimeMillis();
+
+            if( (current_time - last_time) >= 1000 )
+            {
+                // nombre de frames par seconde
+                fps = n;
+                n = 0;
+                last_time = current_time;
+                Log.d("fps",fps+"");
+            }
+        	
         	if(hero.getLife() > 0){
         		//world.step(1f, 50, 50);
 	            world.step(1/60f, 6,2);
@@ -156,7 +174,7 @@ public class GameThread extends Thread {
 	            try {
 					level.updatePos(listEnemies);
 	                canvas = holder.lockCanvas(null);
-	                Log.d("life"," = "+hero.getLife());
+	               // Log.d("life"," = "+hero.getLife());
 					int current = (int) System.currentTimeMillis();
 					level.addEnemyInList(listEnemies, (current-start)/1000);
 	                synchronized (this.holder) {
@@ -185,12 +203,7 @@ public class GameThread extends Thread {
 	                    holder.unlockCanvasAndPost(canvas);
 	                }
         		}
-        		
-        		if(menuCreate == 0){
-        			//Intent intent = new Intent(context, MenuActivity.class);
-        			//context.startActivity(intent); //intent must be declared
-        			menuCreate++;
-        		}
+
           	    ((Activity)context).finish();
           	   
         	}

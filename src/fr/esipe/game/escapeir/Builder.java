@@ -1,7 +1,6 @@
 package fr.esipe.game.escapeir;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 public class Builder extends Activity {

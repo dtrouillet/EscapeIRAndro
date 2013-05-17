@@ -80,9 +80,8 @@ public class MapView extends SurfaceView implements Callback {
     
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-	    	for(int i = 0; i < event.getPointerCount(); i++){
-	    		thread.setPosition(event.getX(i),event.getY(i), event.getAction());
-	    	}
+    	//Log.d("onTouchEvent","touch "+event.getPointerCount());
+    	thread.setPosition(event.getX(0),event.getY(0), event.getAction());	
     	return true;
     }  
 }
