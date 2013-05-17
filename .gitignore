@@ -24,14 +24,4 @@ local.properties
 
 *.prefs
 
-src/.DS_Store
-
-src/.DS_Store
-
-bin/classes/.DS_Store
-
-bin/classes/.DS_Store
-
-bin/classes/.DS_Store
-
-src/.DS_Store
+*.DS_Store
