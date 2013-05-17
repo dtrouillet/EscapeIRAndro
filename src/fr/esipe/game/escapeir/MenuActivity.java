@@ -19,16 +19,28 @@ public class MenuActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
 		Button jouerButton =  (Button) findViewById(R.id.jouer);
+		Button quitterButton = (Button) findViewById(R.id.quitter);
+		
 		jouerButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-					 Intent intent = new Intent(MenuActivity.this, MainActivity.class);
-					 MenuActivity.this.startActivity(intent); //intent must be declared
-		       	    ((Activity)MenuActivity.this).finish();
-		       	    finish();
-				}
-			});
+				 Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+				 MenuActivity.this.startActivity(intent); //intent must be declared
+	       	    ((Activity)MenuActivity.this).finish();
+	       	    finish();
+			}
+		});
+		
+		quitterButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+		
+		
 	}
 
 	@Override

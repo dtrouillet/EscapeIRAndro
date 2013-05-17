@@ -224,8 +224,8 @@ public class GameThread extends Thread {
 	        
 	        dst.set(190, 10, 260, 80);
 	        canvas.drawBitmap(weaponShibooleet, screenRect, dst, null);
-	      //Affichage LIFE AND SCORE
-//			graphics.drawImage(Utils.createImage("underLife.png"), 410, 10, 270, 35, null);
+	        //Affichage LIFE AND SCORE
+	        //graphics.drawImage(Utils.createImage("underLife.png"), 410, 10, 270, 35, null);
 			
 			dst = new RectF(Constant.WIDTH - 200, 10, Constant.WIDTH-10, 45);
 	        canvas.drawBitmap(underLife, null, dst, null);

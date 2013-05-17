@@ -25,3 +25,7 @@ local.properties
 *.prefs
 
 *.DS_Store
+
+*.class
+
+bin/classes/fr/esipe/game/escapeir/MapView.class
