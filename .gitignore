@@ -21,3 +21,15 @@ local.properties
 
 # OSX files
 .DS_Store
+
+*.prefs
+
+src/.DS_Store
+
+src/.DS_Store
+
+bin/classes/.DS_Store
+
+bin/classes/.DS_Store
+
+bin/classes/.DS_Store
