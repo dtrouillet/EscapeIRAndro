@@ -37,12 +37,27 @@ public class MenuActivity extends Activity {
 				//((Activity)MenuActivity.this).finish();
 				//finish();
 			}
+<<<<<<< HEAD
 		};
 		jouerButton.setOnClickListener(menuListener);
 		builderButton.setOnClickListener(menuListener);
 		quitterButton.setOnClickListener(menuListener);
 
 
+=======
+		});
+		
+		quitterButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.d("MenuActivity", "fin");
+				finish();
+			}
+		});
+		
+		
+>>>>>>> branch 'master' of https://github.com/kms77/EscapeIRAndro.git
 	}
 
 	@Override
