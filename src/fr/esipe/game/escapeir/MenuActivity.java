@@ -36,6 +36,7 @@ public class MenuActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				Log.d("MenuActivity", "fin");
 				finish();
 			}
 		});

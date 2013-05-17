@@ -208,7 +208,7 @@ public class GameThread extends Thread {
     }
 
     /**
-     * Draw bitmaps.
+     * Draw bitmaps. life and weapon
      * 
      * @param canvas
      *            The canvas
@@ -235,7 +235,7 @@ public class GameThread extends Thread {
 				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-13, 42);
 		        canvas.drawBitmap(life, null, dst, null);
 			}else{
-				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-(13+(100-lifeH)), 42);
+				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-(13+(100-lifeH/2)), 42);
 		        canvas.drawBitmap(life, null, dst, null);
 			}
 //				graphics.drawImage(Utils.createImage("life.png"), 413, 13, (int)(100*2.64), 29, null);
@@ -393,91 +393,4 @@ public class GameThread extends Thread {
 		
 	}
 	
-//	public  class PositionTask extends AsyncTask<Canvas, Integer, Void> {
-//	    private Rect screenRect2 = new Rect();
-//
-//    	@Override
-//    	protected void onPreExecute() {
-//    		super.onPreExecute();
-//    		//Toast.makeText(context, "debut task position", Toast.LENGTH_SHORT).show();
-//    	}
-//    	
-//    	@Override
-//    	protected Void doInBackground(Canvas... params) {    		
-//    		List<SpaceShip> removeEnemy = new ArrayList<SpaceShip>();
-//
-//
-//    		for(SpaceShip enemy : listEnemies){
-//    			List<Ammo> removeAmmo = new ArrayList<Ammo>();
-//    			Weapon weapon = enemy.getWeaponCurrent();
-//
-//    			if(!enemy.getInformation().isDestroy() && enemy.getBody().getPosition().y > 0 && enemy.getBody().getPosition().x > -80 && enemy.getBody().getPosition().x < 700){
-//    				screenRect2.set((int)enemy.getPosition().x, (int)enemy.getPosition().y, (int)enemy.getPosition().x+80, (int)enemy.getPosition().y + 80);
-//    			  params[0].drawBitmap(enemy.getImage(), null, screenRect2, null);
-//
-//    			for(Ammo myAmmo : weapon.getAllAmmo()){
-//    				Information infoAmmo = (Information)myAmmo.getBody().getUserData();
-//    				if(infoAmmo.isDestroy() || myAmmo.getBody().getPosition().y < 0 || myAmmo.getBody().getPosition().x < 0 || myAmmo.getBody().getPosition().x > 700  ){
-//    					removeAmmo.add(myAmmo);
-//    				}else{
-//    					screenRect2.set((int)myAmmo.getBody().getPosition().x, (int)myAmmo.getBody().getPosition().y, (int)myAmmo.getBody().getPosition().x+25, (int)myAmmo.getBody().getPosition().y+25);
-//    		 	       params[0].drawBitmap(weapon.getImage(), null, screenRect2, null);
-//    					Log.d("shoot","pan");
-//    				}
-//    			}						
-//    			
-//    			if(rand.nextInt(20) == 1){
-//    				//TODO A VERIFIER
-//    				enemy.shoot(new Vec2(0, 200));
-//    			}							
-//    			
-//
-//    			}else{
-//    				for(Ammo myAmmo : weapon.getAllAmmo()){
-//    					Information infoAmmo = (Information)myAmmo.getBody().getUserData();
-//    					if(infoAmmo.isDestroy() || myAmmo.getBody().getPosition().y < 0 || myAmmo.getBody().getPosition().x < -20 || myAmmo.getBody().getPosition().x > 700  ){
-//    						removeAmmo.add(myAmmo);
-//    					}else{
-//    						screenRect2.set((int)myAmmo.getBody().getPosition().x, (int)myAmmo.getBody().getPosition().y, (int)myAmmo.getBody().getPosition().x+25, (int)myAmmo.getBody().getPosition().y+25);
-//    						params[0].drawBitmap(weapon.getImage(), null, screenRect2, null);
-//    					}
-//    				}
-//    				if(enemy.getBonus() != null){
-//    					if(enemy.getBonus().isDestroy() == true){
-//    						world.destroyBody(enemy.getBonus().getBody());
-//    					}else{
-//    						Bonus bonus = enemy.getBonus();
-//    						bonus.setNewPosition(enemy.getPosition());
-//    						//TODO A VERIFIER
-//    						bonus.getBody().setLinearVelocity(new Vec2(0,800));
-//    						
-//    						screenRect2.set((int)bonus.getBody().getPosition().x, (int)bonus.getBody().getPosition().y, (int)bonus.getBody().getPosition().x+25, (int)bonus.getBody().getPosition().y+25);
-//    						params[0].drawBitmap(bonus.getImage(), null, screenRect2, null);
-//    					}
-//    				}
-//    				removeEnemy.add(enemy);
-//    			}
-//    			//suppression des munitions inutiles
-//    			for(Ammo myAmmo : removeAmmo)
-//    				weapon.removeAmmo(myAmmo);
-//    		}
-//    		
-//    		//Suppression des enemis inutiles
-//    		for(SpaceShip ennemis : removeEnemy){
-//    			world.destroyBody(ennemis.getBody());
-//    			if(ennemis.getWeaponCurrent().getAllAmmo().size() == 0 && (ennemis.getBonus() == null || ennemis.getBonus().isDestroy())){
-//    				listEnemies.remove(ennemis);
-//    				Log.d("async","detruit");
-//    			}
-//    		}
-//    		return null;
-//    	}
-//    	
-//    	@Override
-//    	protected void onProgressUpdate(Integer... progress) {
-//    		super.onProgressUpdate(progress);
-//    	}
-//    	
-//
-//    }
 }
