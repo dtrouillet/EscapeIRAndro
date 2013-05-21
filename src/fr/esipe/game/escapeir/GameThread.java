@@ -46,6 +46,9 @@ public class GameThread extends Thread {
     //private int positionX = 0;
     private int positionY = 0;
     
+    //GESTION DU TIR
+    private boolean onHero = false;
+    
     private Rect screenRect = new Rect();
     
     /** The running state. */
@@ -132,7 +135,7 @@ public class GameThread extends Thread {
     @Override
     public void run() {
 
-		org.jbox2d.common.Settings.maxTranslation = 5.0f;	
+		org.jbox2d.common.Settings.maxTranslation = 10.0f;	
 		
         Log.d("thread", "Game thread started");
         ArrayList<LevelXml> listLevel = XmlLoader.getFeeds(context);
@@ -151,9 +154,6 @@ public class GameThread extends Thread {
         int fps = n;
         
         while (running) {
-        	
-            
-
             n++;
             current_time = System.currentTimeMillis();
 
@@ -173,10 +173,11 @@ public class GameThread extends Thread {
 	            Canvas canvas = null;
 	            try {
 					level.updatePos(listEnemies);
-	                canvas = holder.lockCanvas(null);
 	               // Log.d("life"," = "+hero.getLife());
 					int current = (int) System.currentTimeMillis();
 					level.addEnemyInList(listEnemies, (current-start)/1000);
+	                canvas = holder.lockCanvas(null);
+
 	                synchronized (this.holder) {
 	                	//Boucle qui dessine sur le canvas
 	                    hero.cleanAmmo();
@@ -290,20 +291,23 @@ public class GameThread extends Thread {
      }
 
 	public void setPosition(float x, float y, int actionEvent) {
-		//System.out.println("position");
+		//Log.d("hero","setPosition");
 		if(actionEvent == MotionEvent.ACTION_UP){
 			positionEventX = -1;
 			positionEventY = -1;
+			if(onHero){
+				hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
+			}
+			onHero = false;
 		}
 		
 		if(actionEvent == MotionEvent.ACTION_DOWN){
 			if((hero.getLife() > 0) && (x > hero.getPosition().x) && (x < hero.getPosition().x + 80) && (y > hero.getPosition().y) && (y < hero.getPosition().y + 80)){
-				hero.shoot(new Vec2(0, -100));
+				onHero = true;
 			}
 		}
-		
-		
-		if(actionEvent == MotionEvent.ACTION_MOVE){
+				
+		if(actionEvent == MotionEvent.ACTION_MOVE && !onHero){
 			float newX = hero.getPosition().x + (x - positionEventX);
 
 			float newY = hero.getPosition().y + (y - positionEventY);
@@ -322,6 +326,7 @@ public class GameThread extends Thread {
 		positionEventY = y;
 	}
 	
+
 	private void drawEnemy(Canvas canvas){
 		if(canvas == null)
 			return;
@@ -398,7 +403,7 @@ public class GameThread extends Thread {
 			world.destroyBody(ennemis.getBody());
 			if(ennemis.getWeaponCurrent().getAllAmmo().size() == 0 && (ennemis.getBonus() == null || ennemis.getBonus().isDestroy())){
 				listEnemies.remove(ennemis);
-				Log.d("async","detruit");
+				Log.d("enemy","detruit");
 			}
 		}
 //		PositionTask positionTask = new PositionTask();
