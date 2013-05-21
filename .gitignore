@@ -30,3 +30,5 @@ local.properties
 
 bin/*
 *.class
+
+*.class
