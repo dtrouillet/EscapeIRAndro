@@ -8,11 +8,13 @@ import java.util.Random;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
@@ -198,6 +200,7 @@ public class GameThread extends Thread {
 	                canvas = holder.lockCanvas(null);
         			synchronized (this.holder) {
         			// drawGameOver(canvas);
+        				drawResult(canvas, hero.getLife() == 0);
         			}
         		}finally{
         			if (canvas != null) {
@@ -205,7 +208,7 @@ public class GameThread extends Thread {
 	                }
         		}
 
-          	    ((Activity)context).finish();
+          	   // ((Activity)context).finish();
           	   
         	}
         }
@@ -409,6 +412,28 @@ public class GameThread extends Thread {
 //		PositionTask positionTask = new PositionTask();
 //		positionTask.execute(canvas);
 		
+	}
+	
+	private void drawResult(Canvas canvas, boolean isOver){
+		String text;
+		if(isOver)
+			text = "GAME OVER";
+		else
+			text = "WELL DONE";
+		if(canvas != null){
+			canvas.drawColor(Color.RED);
+			Paint paint = new Paint();
+			paint.setColor(Color.WHITE);
+			paint.setTextSize(100);
+			Rect bounds = new Rect();
+			paint.getTextBounds(text, 0, text.length(), bounds);
+			canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2, paint);
+			
+			text = "Press back";
+			paint.getTextBounds(text, 0, text.length(), bounds);
+			canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2 + 50, paint);
+
+		}
 	}
 	
 }
