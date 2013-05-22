@@ -199,8 +199,8 @@ public class GameThread extends Thread {
         		try{
 	                canvas = holder.lockCanvas(null);
         			synchronized (this.holder) {
-        			// drawGameOver(canvas);
         				drawResult(canvas, hero.getLife() == 0);
+        				break;
         			}
         		}finally{
         			if (canvas != null) {
@@ -366,7 +366,6 @@ public class GameThread extends Thread {
 			}						
 			
 			if(rand.nextInt(20) == 1){
-				//TODO A VERIFIER
 				enemy.shoot(new Vec2(0, 200));
 			}							
 			
@@ -396,7 +395,6 @@ public class GameThread extends Thread {
 				}
 				removeEnemy.add(enemy);
 			}
-			//suppression des munitions inutiles
 			for(Ammo myAmmo : removeAmmo)
 				weapon.removeAmmo(myAmmo);
 		}
@@ -431,7 +429,7 @@ public class GameThread extends Thread {
 			
 			text = "Press back";
 			paint.getTextBounds(text, 0, text.length(), bounds);
-			canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2 + 50, paint);
+			canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2 + 100, paint);
 
 		}
 	}
