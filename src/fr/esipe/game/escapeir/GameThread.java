@@ -304,14 +304,20 @@ public class GameThread extends Thread {
 
 	public void setPosition(final float x, final float y, final int actionEvent) {
 		//Log.d("hero","setPosition");
-
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
 				if(actionEvent == MotionEvent.ACTION_UP){
 					positionEventX = -1;
 					positionEventY = -1;
 					if(onHero){
-						//if(x - hero.getPosition().x <)
-						//TODO
-						hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
+						int xInt = (int)(x - hero.getPosition().x);
+						int yInt = (int)(y - hero.getPosition().y);
+						System.out.println("x ="+xInt+" y ="+yInt);
+						if((x - hero.getPosition().x > 100 || x - hero.getPosition().x < -100) || (y - hero.getPosition().y > 100 || y - hero.getPosition().y < -100)){
+							hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
+						}
 					}
 					onHero = false;
 				}
@@ -339,8 +345,10 @@ public class GameThread extends Thread {
 				}
 				positionEventX = x;
 				positionEventY = y;
-							
-	
+				
+			}
+		}).start();
+			
 	}
 	
 
