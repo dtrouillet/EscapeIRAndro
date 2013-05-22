@@ -24,7 +24,7 @@ public class Level {
 	private final EnemiesFactory enemiesFactory;
 	private final HeroFactory heroFactroy;
 	private final WeaponFactory weaponFactory;
-	//private int time;
+	private int time;
 	private int typeHero;
 	private final Context context;
 	private int lifeHero;
@@ -107,6 +107,10 @@ public class Level {
 		Collections.sort(listType);
 		//listTrack = pListTrack;
 		//TODO mettre en place les circuits
+	}
+	
+	public boolean finish(ArrayList<SpaceShip> listEnemy){
+		return (nbrEnemies == listType.size()) && (listEnemy.size() == 0);
 	}
 	
 	public void addParamWeapon(int pTypeWeapon, int pNbrAmmo){

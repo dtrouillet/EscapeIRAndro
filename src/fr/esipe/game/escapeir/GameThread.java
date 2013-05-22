@@ -166,7 +166,7 @@ public class GameThread extends Thread {
                 Log.d("fps",fps+"");
             }
         	
-        	if(hero.getLife() > 0){
+        	if(hero.getLife() > 0 && !level.finish(listEnemies)){
         		//world.step(1f, 50, 50);
 	            world.step(1/60f, 6,2);
         		updateState();
