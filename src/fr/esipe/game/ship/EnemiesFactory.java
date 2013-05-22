@@ -66,7 +66,7 @@ public class EnemiesFactory {
 			//.getSubimage(80, 0, 80, 80);
 			break;
 		}
-		enemy.setPosition(new Vec2(rand.nextInt(Constant.WIDTH), 100));
+		enemy.setPosition(new Vec2(rand.nextInt(Constant.WIDTH) - 100, 100));
 		if(rand.nextInt(10) == 1){
 			Bonus bonus = new Bonus(world,enemy.getWeaponCurrent().getName(), rand.nextInt(50), image);
 			enemy.setBonus(bonus);

@@ -40,11 +40,8 @@ public class Level {
 		name = pName;
 		image = pImage;
 		context = pContext;
-//		AABB worldAABB = new AABB();
-//        worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
-//        worldAABB.upperBound.set(new Vec2((float) 100.0, (float) 300.0));
         
-        Vec2 gravity    = new Vec2((float) 0.0, (float)00.0);
+        Vec2 gravity    = new Vec2((float) 0.0, (float)0.0);
         boolean doSleep = true;
         
 		world = new World(gravity,doSleep);

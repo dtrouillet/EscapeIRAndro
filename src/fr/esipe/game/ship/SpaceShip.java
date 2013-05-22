@@ -35,14 +35,9 @@ public abstract class SpaceShip {
 	}
 	
 	public void setPosition(final Vec2 newPosition){
-		Thread thread = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				body.setTransform(newPosition, 0);
-			}
-		});
-		thread.start();
+
+		body.setTransform(newPosition, 0);
+
 	}
 
 	public SpaceShip(Bitmap pImage, String pNom, boolean pEnnemi, boolean pBoss, int pLife, World pWorld){

@@ -36,7 +36,7 @@ public class GameThread extends Thread {
 
 	//FPS
 	public int targetFPS = 30;
-	public float timeStep = 10.0f / targetFPS;
+	public float timeStep = 1.0f / targetFPS;
     /** The surface width and height. */
     private int width = 0;
     public boolean gameOver = false;
@@ -171,9 +171,8 @@ public class GameThread extends Thread {
             }
         	
         	if(hero.getLife() > 0 && !level.finish(listEnemies)){
-        		//world.step(1f, 50, 50);
-	            world.step(timeStep/5,5,5);
-        		updateState();
+	            world.step(timeStep,2,2);
+           		updateState();
 	            Canvas canvas = null;
 	            try {
 					level.updatePos(listEnemies);
@@ -305,10 +304,7 @@ public class GameThread extends Thread {
 
 	public void setPosition(final float x, final float y, final int actionEvent) {
 		//Log.d("hero","setPosition");
-		Thread thread = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
+
 				if(actionEvent == MotionEvent.ACTION_UP){
 					positionEventX = -1;
 					positionEventY = -1;
@@ -343,11 +339,7 @@ public class GameThread extends Thread {
 				}
 				positionEventX = x;
 				positionEventY = y;
-				
-			}
-		});
-		
-		thread.start();
+							
 	
 	}
 	

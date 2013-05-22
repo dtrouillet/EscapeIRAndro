@@ -14,30 +14,35 @@ import org.jbox2d.dynamics.contacts.Contact;
 public class BodyContactListener implements ContactListener{
 
 	@Override
-	public void beginContact(Contact contact) {
-		Information infoA = (Information) contact.getFixtureA().getBody().getUserData();
-		Information infoB = (Information) contact.getFixtureB().getBody().getUserData();
-		if(infoA == null || infoB == null)
-			return;
-		
-		int damageA = infoA.getDamages();
-		int damageB = infoB.getDamages();
-		infoA.setPoint(infoA.getPoint() - damageB);
-		infoB.setPoint(infoB.getPoint() - damageA);
-		if(infoB.isScoreUp()){
-			infoA.addScore(damageB);
-			contact.getFixtureA().getBody().setAwake(false);
-		}if(infoA.isScoreUp()){
-			infoB.addScore(damageA);
-			contact.getFixtureB().getBody().setAwake(false);
-		}
-		if(infoA.getBonus() != null){
-			infoA.getBonus(infoB.getWeapon());
-			infoA.getBonus().setDestroy(true);
-		}else if(infoB.getBonus() != null){
-			infoB.getBonus(infoA.getWeapon());
-			infoB.getBonus().setDestroy(true);
-		}
+	public void beginContact(Contact contact) {	
+		System.out.println("touch");
+			Information infoA = (Information) contact.getFixtureA().getBody().getUserData();
+			Information infoB = (Information) contact.getFixtureB().getBody().getUserData();
+			
+			if(infoA == null || infoB == null)
+				return;
+			
+			int damageA = infoA.getDamages();
+			int damageB = infoB.getDamages();
+			infoA.setPoint(infoA.getPoint() - damageB);
+			infoB.setPoint(infoB.getPoint() - damageA);
+			
+			if(infoB.isScoreUp()){
+				infoA.addScore(damageB);
+				contact.getFixtureA().getBody().setAwake(false);
+			}if(infoA.isScoreUp()){
+				infoB.addScore(damageA);
+				contact.getFixtureB().getBody().setAwake(false);
+			}
+			
+			if(infoA.getBonus() != null){
+				infoA.getBonus(infoB.getWeapon());
+				infoA.getBonus().setDestroy(true);
+			}else if(infoB.getBonus() != null){
+				infoB.getBonus(infoA.getWeapon());
+				infoB.getBonus().setDestroy(true);
+			}
+			
 	}
 
 	@Override
