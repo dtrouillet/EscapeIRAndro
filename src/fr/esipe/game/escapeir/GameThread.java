@@ -303,42 +303,52 @@ public class GameThread extends Thread {
      	}      
      }
 
-	public void setPosition(float x, float y, int actionEvent) {
+	public void setPosition(final float x, final float y, final int actionEvent) {
 		//Log.d("hero","setPosition");
-		if(actionEvent == MotionEvent.ACTION_UP){
-			positionEventX = -1;
-			positionEventY = -1;
-			if(onHero){
-				//if(x - hero.getPosition().x <)
-				//TODO
-				hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
-			}
-			onHero = false;
-		}
-		
-		if(actionEvent == MotionEvent.ACTION_DOWN){
-			if((hero.getLife() > 0) && (x > hero.getPosition().x) && (x < hero.getPosition().x + 80) && (y > hero.getPosition().y) && (y < hero.getPosition().y + 80)){
-				onHero = true;
-			}
-		}
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				if(actionEvent == MotionEvent.ACTION_UP){
+					positionEventX = -1;
+					positionEventY = -1;
+					if(onHero){
+						//if(x - hero.getPosition().x <)
+						//TODO
+						hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
+					}
+					onHero = false;
+				}
 				
-		if(actionEvent == MotionEvent.ACTION_MOVE && !onHero){
-			float newX = hero.getPosition().x + (x - positionEventX);
+				if(actionEvent == MotionEvent.ACTION_DOWN){
+					if((hero.getLife() > 0) && (x > hero.getPosition().x) && (x < hero.getPosition().x + 80) && (y > hero.getPosition().y) && (y < hero.getPosition().y + 80)){
+						onHero = true;
+					}
+				}
+						
+				if(actionEvent == MotionEvent.ACTION_MOVE && !onHero){
+					float newX = hero.getPosition().x + (x - positionEventX);
 
-			float newY = hero.getPosition().y + (y - positionEventY);
+					float newY = hero.getPosition().y + (y - positionEventY);
 
+							
+					newY = newY < 0 ? 0 : newY;
+					newY = newY > Constant.HEIGHT ? Constant.HEIGHT : newY;
 					
-			newY = newY < 0 ? 0 : newY;
-			newY = newY > Constant.HEIGHT ? Constant.HEIGHT : newY;
-			
-			newX = newX < 0 ? 0 : newX;
-			newX = newX > Constant.WIDTH ? Constant.WIDTH : newX;
-			
-			//Log.d("position", "("+newX+" , "+newY+")");
-			hero.setPosition(new Vec2(newX,newY));	
-		}
-		positionEventX = x;
-		positionEventY = y;
+					newX = newX < 0 ? 0 : newX;
+					newX = newX > Constant.WIDTH ? Constant.WIDTH : newX;
+					
+					//Log.d("position", "("+newX+" , "+newY+")");
+					hero.setPosition(new Vec2(newX,newY));	
+				}
+				positionEventX = x;
+				positionEventY = y;
+				
+			}
+		});
+		
+		thread.start();
+	
 	}
 	
 

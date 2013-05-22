@@ -22,7 +22,7 @@ public class FireBall extends Weapon{
 		setWorld(pWorld);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
-		bodyDef.bullet = true;
+		bodyDef.bullet = false;
 
 		setBodyDef(bodyDef);
 		FixtureDef fixtureDef = new FixtureDef();

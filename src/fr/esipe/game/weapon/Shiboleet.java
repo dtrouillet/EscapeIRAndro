@@ -22,7 +22,7 @@ public class Shiboleet extends Weapon{
 		setWorld(pWorld);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
-		bodyDef.bullet = true;
+		bodyDef.bullet = false;
 		setBodyDef(bodyDef);
 		//bodyDef.angularVelocity = 90;
 
