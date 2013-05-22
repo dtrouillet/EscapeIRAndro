@@ -14,7 +14,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
@@ -199,7 +198,7 @@ public class GameThread extends Thread {
         		try{
 	                canvas = holder.lockCanvas(null);
         			synchronized (this.holder) {
-        				drawResult(canvas, hero.getLife() == 0);
+        				drawResult(canvas, hero.getLife() <= 0);
         				break;
         			}
         		}finally{
@@ -289,7 +288,15 @@ public class GameThread extends Thread {
     		//Log.d("hero", "x = "+hero.getPosition().x+" y = "+hero.getPosition().y);
  	        screenRect.set((int)hero.getPosition().x, (int)hero.getPosition().y, (int)hero.getPosition().x+80, (int)hero.getPosition().y+80);
  	        canvas.drawBitmap(hero.getImage(), null, screenRect, null);
- 	     
+ 	       
+ 	        String text = hero.getScore()+"";
+			Paint paint = new Paint();
+			paint.setColor(Color.WHITE);
+			paint.setTextSize(50);
+			Rect bounds = new Rect();
+			paint.getTextBounds(text, 0, text.length(), bounds);
+			canvas.drawText(text, (canvas.getWidth() - bounds.width() - 10), 100, paint);
+			
      	}      
      }
 

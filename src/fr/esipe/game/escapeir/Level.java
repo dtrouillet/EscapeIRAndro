@@ -24,7 +24,7 @@ public class Level {
 	private final EnemiesFactory enemiesFactory;
 	private final HeroFactory heroFactroy;
 	private final WeaponFactory weaponFactory;
-	private int time;
+//	private int time;
 	private int typeHero;
 	private final Context context;
 	private int lifeHero;
