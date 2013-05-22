@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.jbox2d.collision.AABB;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
@@ -39,7 +40,14 @@ public class Level {
 		name = pName;
 		image = pImage;
 		context = pContext;
-		world = new World(new Vec2(), true);
+//		AABB worldAABB = new AABB();
+//        worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
+//        worldAABB.upperBound.set(new Vec2((float) 100.0, (float) 300.0));
+        
+        Vec2 gravity    = new Vec2((float) 0.0, (float)00.0);
+        boolean doSleep = true;
+        
+		world = new World(gravity,doSleep);
 		enemiesFactory = new EnemiesFactory(world);
 		heroFactroy = new HeroFactory(world);
 		weaponFactory = new WeaponFactory(world);

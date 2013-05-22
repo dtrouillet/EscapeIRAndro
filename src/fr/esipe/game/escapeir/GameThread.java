@@ -34,6 +34,9 @@ import fr.esipe.game.weapon.Weapon;
  */
 public class GameThread extends Thread {
 
+	//FPS
+	public int targetFPS = 30;
+	public float timeStep = 10.0f / targetFPS;
     /** The surface width and height. */
     private int width = 0;
     public boolean gameOver = false;
@@ -169,7 +172,7 @@ public class GameThread extends Thread {
         	
         	if(hero.getLife() > 0 && !level.finish(listEnemies)){
         		//world.step(1f, 50, 50);
-	            world.step(1/60f, 6,2);
+	            world.step(timeStep/5,5,5);
         		updateState();
 	            Canvas canvas = null;
 	            try {
@@ -295,7 +298,7 @@ public class GameThread extends Thread {
 			paint.setTextSize(50);
 			Rect bounds = new Rect();
 			paint.getTextBounds(text, 0, text.length(), bounds);
-			canvas.drawText(text, (canvas.getWidth() - bounds.width() - 10), 100, paint);
+			canvas.drawText(text, (canvas.getWidth() - bounds.width() - 50), 100, paint);
 			
      	}      
      }
@@ -306,6 +309,8 @@ public class GameThread extends Thread {
 			positionEventX = -1;
 			positionEventY = -1;
 			if(onHero){
+				//if(x - hero.getPosition().x <)
+				//TODO
 				hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
 			}
 			onHero = false;
@@ -420,25 +425,29 @@ public class GameThread extends Thread {
 	}
 	
 	private void drawResult(Canvas canvas, boolean isOver){
+		if(canvas == null)
+			return;
+		
 		String text;
-		if(isOver)
+		int color;
+		if(isOver){
 			text = "GAME OVER";
-		else
+			color = Color.RED;
+		}else{
 			text = "WELL DONE";
-		if(canvas != null){
-			canvas.drawColor(Color.RED);
-			Paint paint = new Paint();
-			paint.setColor(Color.WHITE);
-			paint.setTextSize(100);
-			Rect bounds = new Rect();
-			paint.getTextBounds(text, 0, text.length(), bounds);
-			canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2, paint);
-			
-			text = "Press back";
-			paint.getTextBounds(text, 0, text.length(), bounds);
-			canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2 + 100, paint);
-
+			color = Color.BLUE;
 		}
+		
+		canvas.drawColor(color);
+		Paint paint = new Paint();
+		paint.setColor(Color.WHITE);
+		paint.setTextSize(100);
+		Rect bounds = new Rect();
+		paint.getTextBounds(text, 0, text.length(), bounds);
+		canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2, paint);
+		
+		text = "Press back";
+		paint.getTextBounds(text, 0, text.length(), bounds);
+		canvas.drawText(text, (canvas.getWidth() - bounds.width()) / 2, (canvas.getHeight() - bounds.height()) / 2 + 100, paint);
 	}
-	
 }
