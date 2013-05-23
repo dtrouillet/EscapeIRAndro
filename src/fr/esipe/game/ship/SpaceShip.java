@@ -8,7 +8,7 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
 import android.graphics.Bitmap;
-
+import android.util.Log;
 import fr.esipe.game.util.Utils;
 import fr.esipe.game.weapon.Weapon;
 
@@ -35,9 +35,13 @@ public abstract class SpaceShip {
 	}
 	
 	public void setPosition(final Vec2 newPosition){
-
-		body.setTransform(newPosition, 0);
-
+		if(newPosition == null || body == null){
+			Log.d("setPosition","position est a null");
+			return;
+		}
+		synchronized (this) {
+			body.setTransform(newPosition, 0);
+		}
 	}
 
 	public SpaceShip(Bitmap pImage, String pNom, boolean pEnnemi, boolean pBoss, int pLife, World pWorld){

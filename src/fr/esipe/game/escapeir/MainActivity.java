@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onStop() {
-		System.out.println("stop");
+		Log.d("MainActivity","stop");
 		super.onStop();
 		finish();
 	}

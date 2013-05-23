@@ -66,8 +66,7 @@ public class MenuActivity extends Activity {
 
 	@Override
 	protected void onStop() {
-		System.out.println("stopMe");
-		//finish();
+		Log.d("MenuActivity","stop");
 		super.onStop();
 	}
 

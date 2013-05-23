@@ -4,6 +4,7 @@ package fr.esipe.game.escapeir;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
@@ -38,7 +39,7 @@ public class GameThread extends Thread {
 	public int targetFPS = 30;
 	public float timeStep = 1.0f / targetFPS;
     /** The surface width and height. */
-    private int width = 0;
+    //private int width = 0;
     public boolean gameOver = false;
     //private int height = 0;
     
@@ -64,9 +65,15 @@ public class GameThread extends Thread {
     private Context context;
     /** The tiles. */
     private Bitmap tiles;
-    private Bitmap weaponMissile;
-    private Bitmap weaponFireBall;
-    private Bitmap weaponShibooleet;
+    private Bitmap weaponMissileActivate;
+    private Bitmap weaponMissileDesactivate;
+
+    private Bitmap weaponFireBallActivate;
+    private Bitmap weaponFireBallDesactivate;
+
+    private Bitmap weaponShibooleetActivate;
+    private Bitmap weaponShibooleetDesactivate;
+
    // private Bitmap lifeMiddle;
     //private Bitmap lifeLow;
     private Bitmap underLife;
@@ -75,7 +82,7 @@ public class GameThread extends Thread {
 	private final Random rand = new Random();
 	private SpaceShip hero;
 	private World world;
-
+	private AtomicInteger test = new AtomicInteger(0);
 
 
     /** The level. */
@@ -93,9 +100,15 @@ public class GameThread extends Thread {
         this.holder = holder;
         this.context = context;
         this.tiles = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.earth);
-        this.weaponMissile = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponmissile);
-        this.weaponFireBall = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponfireball);
-        this.weaponShibooleet = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponshibooleet);
+        this.weaponMissileActivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponmissilea);
+        this.weaponMissileDesactivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponmissiled);
+
+        this.weaponFireBallActivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponfireballa);
+        this.weaponFireBallDesactivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponfireballd);
+
+        this.weaponShibooleetActivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponshibooleeta);
+        this.weaponShibooleetDesactivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponshibooleetd);
+
         this.underLife = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.underlife);
         this.life = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.life);
        // this.lifeLow = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.lifelow);
@@ -115,7 +128,7 @@ public class GameThread extends Thread {
      */
     public void setSurfaceSize(int width, int height) {
         synchronized (this.holder) {
-            this.width = width;
+            //this.width = width;
             //this.height = height;
             Constant.WIDTH = width;
             Constant.HEIGHT = height;
@@ -171,7 +184,10 @@ public class GameThread extends Thread {
             }
         	
         	if(hero.getLife() > 0 && !level.finish(listEnemies)){
-	            world.step(timeStep,2,2);
+	            synchronized (world) {
+	        		world.step(timeStep,2,2);
+				}
+	            //Log.d("step","step");
            		updateState();
 	            Canvas canvas = null;
 	            try {
@@ -235,13 +251,13 @@ public class GameThread extends Thread {
     	if(canvas != null){
 	        screenRect.set(80, 0, 160, 80);
 	        RectF dst = new RectF(10, 10, 80, 80);
-	        canvas.drawBitmap(weaponMissile, screenRect, dst, null);
+	        canvas.drawBitmap(weaponMissileActivate, null, dst, null);
 	        
 	        dst.set(100, 10, 170, 80);
-	        canvas.drawBitmap(weaponFireBall, screenRect, dst, null);
+	        canvas.drawBitmap(weaponFireBallActivate, null, dst, null);
 	        
 	        dst.set(190, 10, 260, 80);
-	        canvas.drawBitmap(weaponShibooleet, screenRect, dst, null);
+	        canvas.drawBitmap(weaponShibooleetActivate, null, dst, null);
 	        //Affichage LIFE AND SCORE
 	        //graphics.drawImage(Utils.createImage("underLife.png"), 410, 10, 270, 35, null);
 			
@@ -278,9 +294,9 @@ public class GameThread extends Thread {
      */
      private void drawMap(Canvas canvas) {
     	 if(canvas != null){
- 	        screenRect.set(0, positionY, width, positionY+2000);
+ 	        screenRect.set(0, positionY, Constant.WIDTH, positionY+2000);
  	        canvas.drawBitmap(tiles, null, screenRect, null);
- 	        screenRect.set(0, positionY - 2000, width, positionY);
+ 	        screenRect.set(0, positionY - 2000, Constant.WIDTH, positionY);
  	        canvas.drawBitmap(tiles, null, screenRect, null);
      	}      
      }
@@ -303,11 +319,15 @@ public class GameThread extends Thread {
      }
 
 	public void setPosition(final float x, final float y, final int actionEvent) {
-		//Log.d("hero","setPosition");
+		Log.d("hero","setPosition");
+
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
+				if(test.get() != 0)
+					return;
+				test.incrementAndGet();
 				if(actionEvent == MotionEvent.ACTION_UP){
 					positionEventX = -1;
 					positionEventY = -1;
@@ -346,6 +366,7 @@ public class GameThread extends Thread {
 				positionEventX = x;
 				positionEventY = y;
 				
+				test.decrementAndGet();
 			}
 		}).start();
 			
