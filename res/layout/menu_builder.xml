@@ -35,8 +35,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView1"
         android:layout_toRightOf="@+id/textView2"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
         android:ems="10"
+        android:hint="Name"
         android:inputType="text" >
+
     </EditText>
     
     <EditText
@@ -45,8 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"
-        android:ems="10" 
-        android:inputType="time">
+        android:ems="10"
+        android:hint="Min:Sec"
+        android:inputType="time" >
+
     </EditText>
 
     <Button
@@ -57,5 +62,32 @@
         android:layout_alignTop="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
         android:text="Add Background" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Save" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1"
+        android:layout_toLeftOf="@+id/button2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Wrong Entry(s)"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ff0000"
+        android:visibility="gone" />
 
 </RelativeLayout>
