@@ -14,8 +14,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import android.content.Context;
-import android.os.Environment;
-import android.util.Log;
 
 public class XmlLoader {	
 
@@ -50,13 +48,11 @@ public class XmlLoader {
 
 			InputStream input = new FileInputStream(context.getDir("level",Context.MODE_PRIVATE).getAbsolutePath()+File.separator+levelPath+File.separator+"map.xml"); 
 
-			if(input==null)
-				Log.e("erreur android","null");
-			else{
+
 				parseur.parse(input, handler);
 				// On r��cup��re directement la liste des feeds
 				entries = ((ParserXmlHandler) handler).getData();
-			}
+			
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
