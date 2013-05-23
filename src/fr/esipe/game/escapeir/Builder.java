@@ -8,7 +8,7 @@ public class Builder extends Activity {
 protected void onCreate(Bundle savedInstanceState) {
 
 	 super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_builder);
+		setContentView(R.layout.menu_builder);
 }
 	@Override
 		public void onBackPressed() {
