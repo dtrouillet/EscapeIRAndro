@@ -2,6 +2,7 @@ package fr.esipe.game.escapeir;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -37,7 +38,10 @@ public class MapView extends SurfaceView implements Callback {
         setFocusable(true);
     }
 
-    
+    public void setLevel(String myLevel){
+    	System.out.println(myLevel);
+    	this.thread.setLevel(myLevel);
+    }
     /**
      * Surface ready to serve.
      * 

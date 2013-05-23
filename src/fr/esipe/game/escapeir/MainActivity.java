@@ -12,8 +12,11 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("MainActivity", "onCreate");
 		super.onCreate(savedInstanceState);
+		Bundle b = getIntent().getExtras();
+		String myPathLevel = b.getString("pathLevel");
 		setContentView(R.layout.activity_main);
-
+		MapView mapView = (MapView)findViewById(R.id.screen);
+		mapView.setLevel(myPathLevel);
 	}
 
 	@Override

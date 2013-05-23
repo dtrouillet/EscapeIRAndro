@@ -84,6 +84,7 @@ public class GameThread extends Thread {
 	private World world;
 	private AtomicInteger test = new AtomicInteger(0);
 
+	private ArrayList<LevelXml> listLevel;
 
     /** The level. */
    
@@ -118,6 +119,10 @@ public class GameThread extends Thread {
         //this.level = 
     }
 
+    public void setLevel(String pathLevel){
+    	listLevel =  XmlLoader.getFeeds(context,pathLevel);
+    }
+    
     /**
      * Injects the surface size.
      * 
@@ -155,9 +160,8 @@ public class GameThread extends Thread {
 		org.jbox2d.common.Settings.maxTranslation = 10.0f;	
 		
         Log.d("thread", "Game thread started");
-        ArrayList<LevelXml> listLevel = XmlLoader.getFeeds(context);
         //Log.d("XML","taille listLevel = "+listLevel.size());
-        
+        while(listLevel == null);
         Level level = listLevel.get(0).xmlToLevel(context);;
         world = level.getWorld();
 		hero = level.getHero();
