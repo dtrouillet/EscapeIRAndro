@@ -24,53 +24,69 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MenuActivity extends Activity {
-
+	private boolean menu = true;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("MenuActivity","onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
+		setListener();
+		File myDir = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath() + File.separator + "earth"); //pour créer le repertoire dans lequel on va mettre notre fichier
+		Boolean success=false;
+		
+		if (!myDir.exists()) {
+		    success = myDir.mkdir(); //On crée le répertoire (s'il n'existe pas!!)
+		}
+		if (success){				               
+		    FileOutputStream output;
+			try {
+				File myFile = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath() + File.separator + "earth","map.xml"); //on déclare notre futur fichier
+				output = new FileOutputStream(myFile,false);
+				InputStream input = getResources().openRawResource(R.raw.earth);
+				int i = 0;
+				while ((i = input.read()) != -1) {
+				   output.write(i);
+				}
+				//System.out.println(myFile.getAbsolutePath());
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} //le true est pour écrire en fin de fichier, et non l'écraser
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			Log.e("TEST1","ERROR DE CREATION DE DOSSIER");
+		}
+		
+
+
+
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		//getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	private void setListener(){
 		Button jouerButton =  (Button) findViewById(R.id.jouer);
 		Button builderButton =  (Button) findViewById(R.id.builder);
 		Button quitterButton = (Button) findViewById(R.id.quitter);
+		
 		OnClickListener menuListener = new OnClickListener() {
 			ListView listeLvl;
 			TextView txtLvl;
 
 			@Override
 			public void onClick(View arg0) {
-				File myDir = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath() + File.separator + "earth"); //pour créer le repertoire dans lequel on va mettre notre fichier
-				Boolean success=false;
-				
-				if (!myDir.exists()) {
-				    success = myDir.mkdir(); //On crée le répertoire (s'il n'existe pas!!)
-				}
-				if (success){				               
-				    FileOutputStream output;
-					try {
-						File myFile = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath() + File.separator + "earth","map.xml"); //on déclare notre futur fichier
-						output = new FileOutputStream(myFile,false);
-						InputStream input = getResources().openRawResource(R.raw.earth);
-						int i = 0;
-						while ((i = input.read()) != -1) {
-						   output.write(i);
-						}
-						//System.out.println(myFile.getAbsolutePath());
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} //le true est pour écrire en fin de fichier, et non l'écraser
-					catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}else{
-					Log.e("TEST1","ERROR DE CREATION DE DOSSIER");
-				}
-				
-				
-				
-				Intent intent =null;
+				menu = false;
+
+				Intent intent = null;
 				switch(arg0.getId()){
 				case R.id.jouer:
 					setContentView(R.layout.menu_level);
@@ -115,22 +131,18 @@ public class MenuActivity extends Activity {
 		jouerButton.setOnClickListener(menuListener);
 		builderButton.setOnClickListener(menuListener);
 		quitterButton.setOnClickListener(menuListener);
-
-
-
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 
 	@Override
 	public void onBackPressed() {
-		setResult(0);
-		finish();
+		if(menu){
+			setResult(0);
+			finish();
+		}else{
+			setContentView(R.layout.activity_menu);
+			setListener();
+			menu = true;
+		}
 	}
 
 	@Override
