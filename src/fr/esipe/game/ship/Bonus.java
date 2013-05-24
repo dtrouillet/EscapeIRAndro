@@ -10,13 +10,9 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-<<<<<<< HEAD
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
-=======
-import android.graphics.Bitmap;
->>>>>>> Builderscroll
 import fr.esipe.game.util.Constant;
 import fr.esipe.game.weapon.FireBall;
 import fr.esipe.game.weapon.Missile;
