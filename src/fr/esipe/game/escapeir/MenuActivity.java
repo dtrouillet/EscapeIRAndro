@@ -55,8 +55,6 @@ public class MenuActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else{
-			Log.e("TEST1","ERROR DE CREATION DE DOSSIER");
 		}
 		
 

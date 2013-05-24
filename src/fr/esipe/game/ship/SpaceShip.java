@@ -124,7 +124,6 @@ public abstract class SpaceShip {
 	}
 	
 	public Weapon getWeapon(String weaponName){
-		System.out.println(weapon);
 		return weapon.get(weaponName);
 	}
 	

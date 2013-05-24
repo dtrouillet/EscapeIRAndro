@@ -34,7 +34,7 @@
 			<enemy type="2" track="1" nbr="1">2</enemy>
 			<enemy type="2" track="1" nbr="1">5</enemy>
 		</enemies>
-		<hero type="2" life="1000">
+		<hero type="2" life="100">
 			<weapon ammo="10">1</weapon>
 		</hero>
 	</level>

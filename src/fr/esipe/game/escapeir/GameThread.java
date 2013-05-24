@@ -191,9 +191,8 @@ public class GameThread extends Thread {
             }
         	
         	if(hero.getLife() > 0 && !level.finish(listEnemies)){
-	            synchronized (world) {
-	        		world.step(timeStep,2,2);
-				}
+	        	world.step(timeStep,2,2);
+
 	            //Log.d("step","step");
            		updateState();
 	            Canvas canvas = null;
@@ -284,24 +283,17 @@ public class GameThread extends Thread {
 	        canvas.drawBitmap(underLife, null, dst, null);
 			
 	        int lifeH = hero.getLife();
+	        int taille = Constant.WIDTH-218+((int)(2.4*lifeH));
+	        if(taille > 1067)
+	        	taille = 1067;
+	        //Log.d("hero", "vie = "+lifeH+" taille = "+taille);
 			if(lifeH > 100){
-				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-13, 42);
+				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-24, 42);
 		        canvas.drawBitmap(life, null, dst, null);
 			}else{
-				dst = new RectF(Constant.WIDTH - 197, 13, Constant.WIDTH-(13+(100-lifeH/2)), 42);
+				dst = new RectF(Constant.WIDTH - 197, 13,taille, 42);
 		        canvas.drawBitmap(life, null, dst, null);
 			}
-//				graphics.drawImage(Utils.createImage("life.png"), 413, 13, (int)(100*2.64), 29, null);
-//			else if(life > 40)
-//				graphics.drawImage(Utils.createImage("life.png"), 413, 13, (int)(life*2.64), 29, null);
-//			else if(life > 20)
-//				graphics.drawImage(Utils.createImage("lifeMiddle.png"), 413, 13, (int)(life*2.64), 29, null);
-//			else if(life > 0)
-//				graphics.drawImage(Utils.createImage("lifeLow.png"), 413, 13, (int)(life*2.64), 29, null);
-//			else
-//				graphics.drawImage(Utils.createImage("lifeLow.png"), 413, 13, 0, 29, null);
-//
-//			graphics.drawImage(Utils.createImage("underLife.png"), 410, 55, 270, 35, null);
     	}        
     }
     
@@ -354,7 +346,6 @@ public class GameThread extends Thread {
 					if(onHero){
 						int xInt = (int)(x - hero.getPosition().x);
 						int yInt = (int)(y - hero.getPosition().y);
-						System.out.println("x ="+xInt+" y ="+yInt);
 						if((x - hero.getPosition().x > 100 || x - hero.getPosition().x < -100) || (y - hero.getPosition().y > 100 || y - hero.getPosition().y < -100)){
 							hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
 						}
