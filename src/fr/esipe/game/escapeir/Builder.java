@@ -2,11 +2,14 @@ package fr.esipe.game.escapeir;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +21,7 @@ import android.widget.Toast;
 
 public class Builder extends Activity {
  
- 
+ private Bitmap yourSelectedImage=null;
  private static final int SELECT_PHOTO = 100;
 @Override 
 protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +58,30 @@ private void Mysave(){
 	ImageView iv = (ImageView) findViewById(R.id.imageView1);
 	View wrong= findViewById(R.id.textView4);
 	wrong.setVisibility(View.GONE);
-	if(iv.getDrawable()==null|!(name.getText().toString().trim().length()>0)|!(time.getText().toString().trim().length()>0)){
+	if(yourSelectedImage==null|iv.getDrawable()==null|!(name.getText().toString().trim().length()>0)|!(time.getText().toString().trim().length()>0)){
 		wrong.setVisibility(View.VISIBLE);
 	}else{
-		File level=getBaseContext().getDir("level", MODE_PRIVATE);
+		File level = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath() + File.separator + name.getText().toString());
+		if (!level.exists()) {
+			level.mkdir(); //On crée le répertoire (s'il n'existe pas!!)
+		}
+		//iv.setDrawingCacheEnabled(true);
+		//Bitmap bitmap = iv.getDrawingCache();
+		File img= new File(level.getAbsolutePath()+File.separator+"map.png");
+		try 
+        {
+			img.createNewFile();
+            FileOutputStream ostream = new FileOutputStream(img);
+            yourSelectedImage.compress(CompressFormat.PNG, 80, ostream);
+            ostream.close();
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+		Intent i= new Intent(Builder.this, MapBuilder.class);
+		i.putExtra("mappath", level.getAbsolutePath());
+		startActivity(i);
 		Toast.makeText(getBaseContext(), level.getAbsolutePath(), Toast.LENGTH_SHORT).show();
 	}
 }
@@ -73,7 +96,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent imageRet
             InputStream imageStream;
 			try {
 				imageStream = getContentResolver().openInputStream(selectedImage);
-	            Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+	             yourSelectedImage = BitmapFactory.decodeStream(imageStream);
 	            ((ImageView) findViewById(R.id.imageView1)).setImageBitmap(yourSelectedImage);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

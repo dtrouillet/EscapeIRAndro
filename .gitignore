@@ -23,6 +23,9 @@ local.properties
 *.DS_Store
 *.prefs
 
+# WindowsFiles
+Thumbs.db
+
 
 
 /project.properties
