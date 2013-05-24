@@ -72,7 +72,7 @@ private void Mysave(){
         {
 			img.createNewFile();
             FileOutputStream ostream = new FileOutputStream(img);
-            yourSelectedImage.compress(CompressFormat.PNG, 80, ostream);
+            yourSelectedImage.compress(CompressFormat.PNG, 100, ostream);
             ostream.close();
         } 
         catch (Exception e) 
@@ -82,7 +82,7 @@ private void Mysave(){
 		Intent i= new Intent(Builder.this, MapBuilder.class);
 		i.putExtra("mappath", level.getAbsolutePath());
 		startActivity(i);
-		Toast.makeText(getBaseContext(), level.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+		
 	}
 }
 @Override

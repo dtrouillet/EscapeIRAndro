@@ -20,7 +20,8 @@ protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_builder);
 	List<MapLvl> listmaplvl= new ArrayList<MapLvl>();
-	Drawable image = new BitmapDrawable(getIntent().getExtras().get("mappath")+File.separator+"map.png");
+	String path=getIntent().getExtras().get("mappath")+File.separator+"map.png";
+	Drawable image = new BitmapDrawable(path);
 	MapLvl lvl=new MapLvl(image);
 	for(int i=0;i<21;i++){
 		listmaplvl.add(lvl);

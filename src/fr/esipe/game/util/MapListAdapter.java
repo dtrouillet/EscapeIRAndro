@@ -29,7 +29,6 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 		convertView = ( LinearLayout ) inflater.inflate( resource, null );
 		MapLvl city = getItem( position );
 	    convertView.setBackgroundDrawable(city.getImage());
-
 		return convertView;
 
 	}
