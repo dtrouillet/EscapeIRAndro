@@ -18,8 +18,23 @@ import fr.esipe.game.util.Utils;
  */
 public class FireBall extends Weapon{
 	public FireBall(World pWorld, boolean isEnemy, Context context){
-		super(Utils.createImage(context,R.drawable.fireball),2,"FireBall", isEnemy);
+		super(Utils.createImage(context,R.drawable.fireball),2,Weapon.FIREBALL, isEnemy);
 		setWorld(pWorld);
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyType.DYNAMIC;
+		bodyDef.bullet = false;
+
+		setBodyDef(bodyDef);
+		FixtureDef fixtureDef = new FixtureDef();
+		PolygonShape polygon = new PolygonShape();
+		polygon.setAsBox(6, 6);
+		fixtureDef.shape = polygon;
+		setFixtureDef(fixtureDef);
+		setDimension(new Vec2(12,12));
+	}
+	
+	public FireBall(FireBall initFireBall){
+		super(initFireBall);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
 		bodyDef.bullet = false;

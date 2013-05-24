@@ -59,7 +59,7 @@ public class BossFactory {
 		}
 		boss.setPosition(new Vec2(rand.nextInt(600), 900));
 		if(rand.nextInt(4) == 1){
-			Bonus bonus = new Bonus(world,boss.getWeaponCurrent().getName(), rand.nextInt(50), Utils.createImage(context,R.drawable.fireball));
+			Bonus bonus = new Bonus(world,boss.getWeaponCurrent().getName(), rand.nextInt(50), Utils.createImage(context,R.drawable.fireball),context);
 			boss.setBonus(bonus);
 		}
 		return boss;

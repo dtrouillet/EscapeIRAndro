@@ -18,8 +18,27 @@ import fr.esipe.game.util.Utils;
  */
 public class Missile extends Weapon{
 	public Missile(World pWorld, boolean isEnemy, Context context){
-		super(Utils.createImage(context, R.drawable.missile),10,"Missile", isEnemy);
+		super(Utils.createImage(context, R.drawable.missile),10,Weapon.MISSILE, isEnemy);
 		setWorld(pWorld);
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyType.DYNAMIC;
+		bodyDef.bullet = false;
+		setBodyDef(bodyDef);
+
+		FixtureDef fixtureDef = new FixtureDef();
+
+		PolygonShape polygon = new PolygonShape();
+		polygon.setAsBox(4.5f, 14f);
+		
+		fixtureDef.shape = polygon;
+		
+		setFixtureDef(fixtureDef);
+		
+		setDimension(new Vec2(9,28));
+	}
+	
+	public Missile(Missile initMissile){
+		super(initMissile);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
 		bodyDef.bullet = false;

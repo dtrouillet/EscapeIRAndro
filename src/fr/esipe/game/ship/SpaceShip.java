@@ -39,7 +39,7 @@ public abstract class SpaceShip {
 			Log.d("setPosition","position est a null");
 			return;
 		}
-		synchronized (this) {
+		synchronized (body) {
 			body.setTransform(newPosition, 0);
 		}
 	}
@@ -124,6 +124,7 @@ public abstract class SpaceShip {
 	}
 	
 	public Weapon getWeapon(String weaponName){
+		System.out.println(weapon);
 		return weapon.get(weaponName);
 	}
 	

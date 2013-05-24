@@ -18,8 +18,27 @@ import fr.esipe.game.util.Utils;
  */
 public class Shiboleet extends Weapon{
 	public Shiboleet(World pWorld, boolean isEnemy, Context context){
-		super(Utils.createImage(context, R.drawable.shibooleet),20,"Shiboleet", isEnemy);
+		super(Utils.createImage(context, R.drawable.shibooleet),20,Weapon.SHIBOLEET, isEnemy);
 		setWorld(pWorld);
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyType.DYNAMIC;
+		bodyDef.bullet = false;
+		setBodyDef(bodyDef);
+		//bodyDef.angularVelocity = 90;
+
+		FixtureDef fixtureDef = new FixtureDef();
+
+		CircleShape circle = new CircleShape();
+		circle.m_radius = 25;
+		
+		fixtureDef.shape = circle;
+		
+		setFixtureDef(fixtureDef);
+		setDimension(new Vec2());
+	}
+	
+	public Shiboleet(Shiboleet initShiboleet){
+		super(initShiboleet);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
 		bodyDef.bullet = false;

@@ -36,65 +36,6 @@ public class HeroFactory {
 			break;
 		}
 		hero.setLife(life);
-		//applyLimit();
 		return hero;
 	}
-	
-//	private void applyLimit(){
-//		Log.d("applyLimit", "WIDTH = "+Constant.WIDTH+" HEIGHT = "+Constant.HEIGHT);
-//		BodyDef bodyDefLeft = new BodyDef();
-//		BodyDef bodyDefRight = new BodyDef();
-//		BodyDef bodyDefTop = new BodyDef();
-//		BodyDef bodyDefBottom = new BodyDef();
-//
-//		bodyDefLeft.type = BodyType.STATIC;
-//		bodyDefRight.type = BodyType.STATIC;
-//		bodyDefTop.type = BodyType.STATIC;
-//		bodyDefBottom.type = BodyType.STATIC;
-//		
-//		bodyDefLeft.position = new Vec2(-30,Constant.HEIGHT - (Constant.HEIGHT/3*2));
-//		bodyDefRight.position = new Vec2(Constant.WIDTH,Constant.HEIGHT);
-//		bodyDefTop.position = new Vec2(0,Constant.HEIGHT - (Constant.HEIGHT/3*2));
-//		bodyDefBottom.position = new Vec2(0,0);
-//
-//		Body bodyLeft = world.createBody(bodyDefLeft);
-//		Body bodyRight = world.createBody(bodyDefRight);
-//		Body bodyTop = world.createBody(bodyDefTop);
-//		Body bodyBottom = world.createBody(bodyDefBottom);
-//		
-//		FixtureDef fixtureDefLeft = new FixtureDef();
-//		FixtureDef fixtureDefRight = new FixtureDef();
-//		FixtureDef fixtureDefTop = new FixtureDef();
-//		FixtureDef fixtureDefBottom = new FixtureDef();
-//
-//		PolygonShape polygonLeft = new PolygonShape();
-//		PolygonShape polygonRight = new PolygonShape();
-//		PolygonShape polygonTop = new PolygonShape();
-//		PolygonShape polygonBottom = new PolygonShape();
-//
-//		polygonLeft.setAsBox(0, Constant.HEIGHT);
-//		polygonRight.setAsBox(0, Constant.HEIGHT);
-//		polygonTop.setAsBox(Constant.WIDTH, 0);
-//		polygonBottom.setAsBox(Constant.WIDTH, 0);
-//
-//		fixtureDefRight.shape = polygonRight;
-//		fixtureDefLeft.shape = polygonLeft;
-//		fixtureDefTop.shape = polygonTop;
-//		fixtureDefBottom.shape = polygonBottom;
-//
-//		fixtureDefLeft.filter.categoryBits = Constant.CATEGORY_WALL;
-//		fixtureDefRight.filter.categoryBits = Constant.CATEGORY_WALL;
-//		fixtureDefTop.filter.categoryBits = Constant.CATEGORY_WALL;
-//		fixtureDefBottom.filter.categoryBits = Constant.CATEGORY_WALL;
-//
-//		fixtureDefLeft.filter.maskBits = Constant.MASK_WALL;
-//		fixtureDefRight.filter.maskBits = Constant.MASK_WALL;
-//		fixtureDefTop.filter.maskBits = Constant.MASK_WALL;
-//		fixtureDefBottom.filter.maskBits = Constant.MASK_WALL;
-//
-//		bodyLeft.createFixture(fixtureDefLeft);
-//		bodyRight.createFixture(fixtureDefRight);
-//		bodyTop.createFixture(fixtureDefTop);
-//		bodyBottom.createFixture(fixtureDefBottom);
-//	}
 }

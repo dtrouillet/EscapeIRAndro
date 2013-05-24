@@ -53,6 +53,9 @@ public class GameThread extends Thread {
     
     //GESTION DU TIR
     private boolean onHero = false;
+    private boolean onMissile = false;
+    private boolean onFireball = false;
+    private boolean onShiboleet = false;
     
     private Rect screenRect = new Rect();
     
@@ -255,13 +258,25 @@ public class GameThread extends Thread {
     	if(canvas != null){
 	        screenRect.set(80, 0, 160, 80);
 	        RectF dst = new RectF(10, 10, 80, 80);
-	        canvas.drawBitmap(weaponMissileActivate, null, dst, null);
-	        
+			if(hero.getWeapon(Weapon.MISSILE) != null && hero.getWeapon(Weapon.MISSILE).getNbrAmmo() != 0){
+		        canvas.drawBitmap(weaponMissileActivate, null, dst, null);
+			}else{
+		        canvas.drawBitmap(weaponMissileDesactivate, null, dst, null);
+			}
+
 	        dst.set(100, 10, 170, 80);
-	        canvas.drawBitmap(weaponFireBallActivate, null, dst, null);
-	        
+			if(hero.getWeapon(Weapon.FIREBALL) != null && hero.getWeapon(Weapon.FIREBALL).getNbrAmmo() != 0){
+		        canvas.drawBitmap(weaponFireBallActivate, null, dst, null);
+			}else{
+		        canvas.drawBitmap(weaponFireBallDesactivate, null, dst, null);
+			}	      
+			
 	        dst.set(190, 10, 260, 80);
-	        canvas.drawBitmap(weaponShibooleetActivate, null, dst, null);
+			if(hero.getWeapon(Weapon.SHIBOLEET) != null && hero.getWeapon(Weapon.SHIBOLEET).getNbrAmmo() != 0){
+		        canvas.drawBitmap(weaponShibooleetActivate, null, dst, null);
+			}else{
+		        canvas.drawBitmap(weaponShibooleetDesactivate, null, dst, null);
+			}
 	        //Affichage LIFE AND SCORE
 	        //graphics.drawImage(Utils.createImage("underLife.png"), 410, 10, 270, 35, null);
 			
@@ -323,8 +338,9 @@ public class GameThread extends Thread {
      }
 
 	public void setPosition(final float x, final float y, final int actionEvent) {
-		Log.d("hero","setPosition");
-
+		//Log.d("hero","setPosition");
+		if(hero == null)
+			return;
 		new Thread(new Runnable() {
 			
 			@Override
@@ -342,13 +358,39 @@ public class GameThread extends Thread {
 						if((x - hero.getPosition().x > 100 || x - hero.getPosition().x < -100) || (y - hero.getPosition().y > 100 || y - hero.getPosition().y < -100)){
 							hero.shoot(new Vec2(x-hero.getPosition().x,y-hero.getPosition().y));
 						}
+					}else if(onMissile){
+						hero.setWeapon(Weapon.MISSILE);
+						Log.d("GameThread", "Missile");
+					}else if(onFireball){
+						hero.setWeapon(Weapon.FIREBALL);
+						Log.d("GameThread", "Fireball");
+					}else if(onShiboleet){
+						hero.setWeapon(Weapon.SHIBOLEET);
+						Log.d("GameThread", "Shiboleet");
 					}
 					onHero = false;
+					onMissile = false;
+					onFireball = false;
+					onShiboleet = false;
 				}
 				
 				if(actionEvent == MotionEvent.ACTION_DOWN){
 					if((hero.getLife() > 0) && (x > hero.getPosition().x) && (x < hero.getPosition().x + 80) && (y > hero.getPosition().y) && (y < hero.getPosition().y + 80)){
 						onHero = true;
+					}else if(y < 80 && y > 10){
+						if(x < 80 && y > 10){
+							if(hero.getWeapon(Weapon.MISSILE) != null)
+								onMissile = true;
+							Log.d("GameThread","Missile "+onMissile);
+						}else if(x < 170 && x > 100){
+							if(hero.getWeapon(Weapon.FIREBALL) != null)
+								onFireball = true;
+							Log.d("GameThread","Fireball "+onFireball);
+						}else if(x < 260 && x > 190){
+							if(hero.getWeapon(Weapon.SHIBOLEET) != null)
+								onShiboleet = true;
+							Log.d("GameThread","Shiboleet "+onShiboleet);
+						}
 					}
 				}
 						

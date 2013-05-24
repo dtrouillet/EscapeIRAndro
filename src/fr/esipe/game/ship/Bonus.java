@@ -10,10 +10,13 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-import fr.esipe.game.util.Constant;
-import fr.esipe.game.weapon.Weapon;
-
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
+import fr.esipe.game.util.Constant;
+import fr.esipe.game.weapon.FireBall;
+import fr.esipe.game.weapon.Missile;
+import fr.esipe.game.weapon.Weapon;
 
 
 public class Bonus {
@@ -24,12 +27,14 @@ public class Bonus {
 	private boolean isDestroy = false;
 	private Body body;
 	private boolean isInit = false;
+	private Context context;
 	
-	public Bonus(World pWorld, String pTypeWeapon, int pNbrAmmo, Bitmap pImage){
+	public Bonus(World pWorld, String pTypeWeapon, int pNbrAmmo, Bitmap pImage, Context pContext){
 		typeWeapon = pTypeWeapon;
 		nbrAmmo = pNbrAmmo;
 		image = pImage;
 		world = pWorld;
+		context = pContext;
 		createBody();
 	}
 	
@@ -62,8 +67,26 @@ public class Bonus {
 	}
 	
 	public void getAmmo(HashMap<String,Weapon> listWeapon){
-		if(listWeapon.get(typeWeapon) != null)
+		if(listWeapon == null)
+			return;
+		if(listWeapon.get(typeWeapon) != null){
+			Log.d("Weapon", "ajout");
 			listWeapon.get(typeWeapon).addAmmo(nbrAmmo);
+		}else{
+			Log.d("Weapon", "ajout");
+			Weapon newWeapon = null;
+			if(typeWeapon.equals(Weapon.MISSILE)){
+				newWeapon = new Missile(world, false, context);
+				newWeapon.setNbrAmmo(nbrAmmo);
+			}else if(typeWeapon.equals(Weapon.FIREBALL)){
+				newWeapon = new FireBall(world, false, context);
+				newWeapon.setNbrAmmo(nbrAmmo);
+			}else if(typeWeapon.equals(Weapon.SHIBOLEET)){
+				newWeapon = new Missile(world, false, context);
+				newWeapon.setNbrAmmo(nbrAmmo);
+			}
+			listWeapon.put(typeWeapon,newWeapon);
+		}
 	}
 
 	public boolean isDestroy() {

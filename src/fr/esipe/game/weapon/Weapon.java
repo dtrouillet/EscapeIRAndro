@@ -17,6 +17,12 @@ import fr.esipe.game.util.Constant;
  *
  */
 public abstract class Weapon{
+	
+	public static final String FIREBALL = "FireBall";
+	public static final String MISSILE = "Missile";
+	public static final String SHIBOLEET = "Shiboleet";
+
+	
 	private final Bitmap bufferedImage;
 	private final int damage;
 	private final boolean isEnemy;
@@ -49,6 +55,14 @@ public abstract class Weapon{
 		damage = pDamage;
 		name = pName;
 		isEnemy = pIsEnemy;
+	}
+	
+	public Weapon(Weapon initWeapon){
+		bufferedImage = initWeapon.bufferedImage;
+		damage = initWeapon.damage;
+		name = initWeapon.name;
+		isEnemy = initWeapon.isEnemy;
+		setWorld(initWeapon.world);
 	}
 		
 	/**
