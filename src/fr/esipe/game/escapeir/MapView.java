@@ -266,23 +266,28 @@ private class GameThread extends Thread {
 		world.setContactListener(new BodyContactListener());
 		int start = (int) System.currentTimeMillis();
 		
-		double current_time = 0;
-        double last_time = 0;
-        int n = 0;
-        int fps = n;
+//		double current_time = 0;
+//        double last_time = 0;
+//        int n = 0;
+//        int fps = n;
         
         while (running) {
-            n++;
-            current_time = System.currentTimeMillis();
-
-            if( (current_time - last_time) >= 1000 )
-            {
-                // nombre de frames par seconde
-                fps = n;
-                n = 0;
-                last_time = current_time;
-                //Log.d("fps",fps+"");
-            }
+        	try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+//            n++;
+//            current_time = System.currentTimeMillis();
+//
+//            if( (current_time - last_time) >= 1000 )
+//            {
+//                // nombre de frames par seconde
+//                fps = n;
+//                n = 0;
+//                last_time = current_time;
+//                //Log.d("fps",fps+"");
+//            }
         	
         	if(hero.getLife() > 0 && !level.finish(listEnemies)){
 
