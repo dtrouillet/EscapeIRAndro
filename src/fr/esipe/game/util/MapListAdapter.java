@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
 public class MapListAdapter extends ArrayAdapter<MapLvl> {
@@ -28,7 +30,9 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 
 		convertView = ( LinearLayout ) inflater.inflate( resource, null );
 		MapLvl city = getItem( position );
-	    convertView.setBackgroundDrawable(city.getImage());
+	    ImageView iv=(ImageView) ((LinearLayout) convertView).getChildAt(0);
+	    
+	    iv.setImageBitmap(city.getImage());
 		return convertView;
 
 	}
