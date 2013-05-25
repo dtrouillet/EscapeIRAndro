@@ -4,26 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@android:color/white" >
 
-    <!--
-    <ScrollView
-        android:id="@+id/ScrollView1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:layout_above="@+id/horizontalScrollView1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/jupiter2"
-            android:orientation="vertical"
-            android:id="@+id/Linearbuild"
-             >
-
-        </LinearLayout>
-
-        // place your all scrollable views here.
-    </ScrollView>
-    -->
+  
 
     <ListView
         android:id="@+id/listView1"
@@ -41,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/darker_gray" >
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/Linear"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -51,92 +32,185 @@
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
+                android:src="@drawable/spaceship1" />
+
+            <ImageView
+                android:id="@+id/imageView1a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView1"
+                android:layout_alignRight="@id/imageView1"
+                android:src="@drawable/weaponmissilea" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
+                android:layout_toRightOf="@id/imageView1"
+                android:src="@drawable/spaceship1" />
+
+            <ImageView
+                android:id="@+id/imageView2a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView2"
+                android:layout_alignRight="@id/imageView2"
+                android:src="@drawable/weaponfireballa" />
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
+                android:layout_toRightOf="@id/imageView2"
+                android:src="@drawable/spaceship1" />
+
+            <ImageView
+                android:id="@+id/imageView3a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView3"
+                android:layout_alignRight="@id/imageView3"
+                android:src="@drawable/weaponshibooleeta" />
 
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
+                android:layout_toRightOf="@id/imageView3"
+                android:src="@drawable/spaceship2" />
+
+            <ImageView
+                android:id="@+id/imageView4a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView4"
+                android:layout_alignRight="@id/imageView4"
+                android:src="@drawable/weaponmissilea" />
 
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_info" />
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/imageView4"
+                android:src="@drawable/spaceship2" />
+
+            <ImageView
+                android:id="@+id/imageView5a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView5"
+                android:layout_alignRight="@id/imageView5"
+                android:src="@drawable/weaponfireballa" />
 
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
+                android:layout_toRightOf="@id/imageView5"
+                android:src="@drawable/spaceship2" />
 
             <ImageView
+                android:id="@+id/imageView6a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView6"
+                android:layout_alignRight="@id/imageView6"
+                android:src="@drawable/weaponshibooleeta" />
+            
+                <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_info" />
-
-            <ImageView
+                android:layout_height="match_parent"
+                android:src="@drawable/spaceship3" 
+                android:layout_toRightOf="@id/imageView6"/>
+			<ImageView
+                android:id="@+id/imageView7a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/weaponmissilea"
+                android:layout_alignBottom="@id/imageView7"
+                android:layout_alignRight="@id/imageView7" 
+                
+                />
+			<ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
-
-            <ImageView
+                android:src="@drawable/spaceship3" 
+                android:layout_toRightOf="@id/imageView7"/>
+			<ImageView
+                android:id="@+id/imageView8a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/weaponfireballa"
+                android:layout_alignBottom="@id/imageView8"
+                android:layout_alignRight="@id/imageView8" 
+                
+                />
+			<ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_info" />
-
-            <ImageView
+                android:layout_height="match_parent"
+                android:src="@drawable/spaceship3" 
+                android:layout_toRightOf="@id/imageView8"/>
+			<ImageView
+                android:id="@+id/imageView9a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/weaponshibooleeta"
+                android:layout_alignBottom="@id/imageView9"
+                android:layout_alignRight="@id/imageView9" 
+                
+                />
+			
+			    <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
-
-            <ImageView
+                android:src="@drawable/boss1" 
+                android:layout_toRightOf="@id/imageView9"/>
+			<ImageView
+                android:id="@+id/imageView10a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/weaponmissilea"
+                android:layout_alignBottom="@id/imageView10"
+                android:layout_alignRight="@id/imageView10" 
+                
+                />
+			<ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_info" />
-
-            <ImageView
+                android:layout_height="match_parent"
+                android:src="@drawable/boss1" 
+                android:layout_toRightOf="@id/imageView10"/>
+			<ImageView
+                android:id="@+id/imageView11a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/weaponfireballa"
+                android:layout_alignBottom="@id/imageView11"
+                android:layout_alignRight="@id/imageView11" 
+                
+                />
+			<ImageView
                 android:id="@+id/imageView12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
-
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_info" />
-
-            <ImageView
-                android:id="@+id/imageView14"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@android:drawable/ic_delete" />
-
-            <ImageView
-                android:id="@+id/imageView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_info" />
-        </LinearLayout>
+                android:src="@drawable/boss1" 
+                android:layout_toRightOf="@id/imageView11"/>
+			<ImageView
+                android:id="@+id/imageView12a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/weaponshibooleeta"
+                android:layout_alignBottom="@id/imageView12"
+                android:layout_alignRight="@id/imageView12" 
+                
+                />
+			
+            
+        </RelativeLayout>
     </HorizontalScrollView>
 
     <TextView
