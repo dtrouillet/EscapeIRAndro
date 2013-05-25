@@ -6,6 +6,7 @@ package fr.esipe.game.util;
  *
  */
 public class Constant {
+	public static int SEC_P_MAP = 3;
 	public static int WIDTH = 700;
 	public static int HEIGHT = 800;
 	public static final byte CATEGORY_PLAYER = 0x0001; 		// 0000000000000001 in binary

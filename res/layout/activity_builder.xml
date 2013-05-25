@@ -4,16 +4,16 @@
     android:layout_height="fill_parent"
     android:background="@android:color/white" >
 
-  
 
-    <ListView
+
+    <fr.esipe.game.util.MapListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
         android:dividerHeight="0dp"
         tools:listitem="@layout/map_row_item" >
-    </ListView>
+    </fr.esipe.game.util.MapListView>
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView1"

@@ -9,7 +9,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import fr.esipe.game.util.MapListAdapter;
+import fr.esipe.game.util.MapListView;
 import fr.esipe.game.util.MapLvl;
 
 public class MapBuilder extends Activity {
@@ -29,7 +31,9 @@ protected void onCreate(Bundle savedInstanceState) {
 		listmaplvl.add(lvl);
 	}
 	ListView listView = ( ListView ) findViewById( R.id.listView1);
+	((MapListView)listView).setTextView((TextView) findViewById(R.id.textView1));
 	listView.setAdapter( new MapListAdapter(this, R.layout.map_row_item, listmaplvl ) );
 	
  }
+ 
 }
