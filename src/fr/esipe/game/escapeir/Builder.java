@@ -80,10 +80,30 @@ private void Mysave(){
             e.printStackTrace();
         }
 		Intent i= new Intent(Builder.this, MapBuilder.class);
+		int timer=computeTime(time.getText().toString());
+		if(timer==0){
+			wrong.setVisibility(View.VISIBLE);return;
+		}
 		i.putExtra("mappath", level.getAbsolutePath());
+		i.putExtra("time", timer);
 		startActivity(i);
 		
 	}
+}
+private int computeTime(String string) {
+	String[] time =string.split(":");
+	int sec=0;
+	if(time.length>2)
+	return 0;
+	if(time.length==2){
+		sec=Integer.parseInt(time[0])*60;
+		sec+=Integer.parseInt(time[1]);
+	}else{
+		sec=Integer.parseInt(time[0]);
+	}
+	if(sec>5*60)
+		return 0;
+	return sec;
 }
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) { 

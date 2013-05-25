@@ -1,0 +1,248 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white" >
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/horizontalScrollView1"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        tools:listitem="@layout/map_row_item" >
+
+    </ListView>
+
+    <ScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/darker_gray" >
+
+        <RelativeLayout
+            android:id="@+id/Linear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship1" />
+
+            <ImageView
+                android:id="@+id/imageView1a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView1"
+                android:layout_alignRight="@id/imageView1"
+                android:src="@drawable/weaponmissilea" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView1"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship1" />
+
+            <ImageView
+                android:id="@+id/imageView2a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView2"
+                android:layout_alignRight="@id/imageView2"
+                android:src="@drawable/weaponfireballa" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView2"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship1" />
+
+            <ImageView
+                android:id="@+id/imageView3a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView3"
+                android:layout_alignRight="@id/imageView3"
+                android:src="@drawable/weaponshibooleeta" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView3"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship2" />
+
+            <ImageView
+                android:id="@+id/imageView4a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView4"
+                android:layout_alignRight="@id/imageView4"
+                android:src="@drawable/weaponmissilea" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView4"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship2" />
+
+            <ImageView
+                android:id="@+id/imageView5a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView5"
+                android:layout_alignRight="@id/imageView5"
+                android:src="@drawable/weaponfireballa" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView5"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship2" />
+
+            <ImageView
+                android:id="@+id/imageView6a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView6"
+                android:layout_alignRight="@id/imageView6"
+                android:src="@drawable/weaponshibooleeta" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView6"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship3" />
+
+            <ImageView
+                android:id="@+id/imageView7a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView7"
+                android:layout_alignRight="@id/imageView7"
+                android:padding="5dp"
+                android:src="@drawable/weaponmissilea" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView7"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship3" />
+
+            <ImageView
+                android:id="@+id/imageView8a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView8"
+                android:layout_alignRight="@id/imageView8"
+                android:src="@drawable/weaponfireballa" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView8"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/spaceship3" />
+
+            <ImageView
+                android:id="@+id/imageView9a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView9"
+                android:layout_alignRight="@id/imageView9"
+                android:src="@drawable/weaponshibooleeta" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView9"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/boss1" />
+
+            <ImageView
+                android:id="@+id/imageView10a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView10"
+                android:layout_alignRight="@id/imageView10"
+                android:src="@drawable/weaponmissilea" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView10"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/boss1" />
+
+            <ImageView
+                android:id="@+id/imageView11a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView11"
+                android:layout_alignRight="@id/imageView11"
+                android:src="@drawable/weaponfireballa" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/imageView11"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:src="@drawable/boss1" />
+
+            <ImageView
+                android:id="@+id/imageView12a"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/imageView12"
+                android:layout_alignRight="@id/imageView12"
+                android:src="@drawable/weaponshibooleeta" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#22000000"
+        android:text="0:0-0:0"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

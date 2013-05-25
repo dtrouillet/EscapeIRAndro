@@ -21,10 +21,11 @@ protected void onCreate(Bundle savedInstanceState) {
 	setContentView(R.layout.activity_builder);
 	List<MapLvl> listmaplvl= new ArrayList<MapLvl>();
 	String path=getIntent().getExtras().get("mappath")+File.separator+"map.png";
-	
+	int time=(Integer) getIntent().getExtras().get("time");
+	int nbmap=(time/3)+1;
 	//Drawable image = Drawable.createFromPath(path);
 	MapLvl lvl=new MapLvl(path);
-	for(int i=0;i<21;i++){
+	for(int i=0;i<nbmap;i++){
 		listmaplvl.add(lvl);
 	}
 	ListView listView = ( ListView ) findViewById( R.id.listView1);
