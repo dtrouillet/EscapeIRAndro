@@ -3,20 +3,40 @@ package fr.esipe.game.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.List;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.RelativeLayout;
 
 public class MapLvl {
 
 	private Bitmap image;
+	private List<Drawable> spaceships;
+	private List<RelativeLayout.LayoutParams> params;
 
 	public MapLvl(String image2) {
 		super();
 		this.image = decodeFile(new File(image2));
+		spaceships = new LinkedList<Drawable>();
+		params = new LinkedList<RelativeLayout.LayoutParams>();
 	}
 	
+	public void addSpaceships(Drawable spaceship,RelativeLayout.LayoutParams param){
+		spaceships.add(spaceship);
+		params.add(param);
+	}
+	public int getCountSpacehipOnMap(){
+		return spaceships.size();
+	}
+	public Drawable getSpaceshipOnMap(int index){
+		return spaceships.get(index);
+	}
 	
 	private Bitmap decodeFile(File f){
 		try {
@@ -53,6 +73,10 @@ public class MapLvl {
 
 	public void setImage(Bitmap image) {
 		this.image = image;
+	}
+
+	public LayoutParams getSpaceshipparam(int i) {
+		return params.get(i);
 	}
 
 }

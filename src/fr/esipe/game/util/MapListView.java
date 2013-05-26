@@ -25,9 +25,9 @@ public class MapListView extends ListView {
 		// 
 	}
 	
+	
 	@Override
 	protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-		Log.d("Scroll", "update");
 		updateTime();
 		updateTextView();
 		super.onScrollChanged(l, t, oldl, oldt);
