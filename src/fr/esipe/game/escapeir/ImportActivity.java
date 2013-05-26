@@ -40,8 +40,10 @@ public class ImportActivity extends Activity {
 				finish();
 			}
 		});
+		alert.setCancelable(false);
 
 		alert.show();
+		
 		// test du type de contenu que l'on pourrait recevoir (en fonction de l'URI des données envoyées)
 		
 	}
@@ -66,5 +68,12 @@ public class ImportActivity extends Activity {
 			}
 		}
 		
+	}
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		finish();
 	}
 }

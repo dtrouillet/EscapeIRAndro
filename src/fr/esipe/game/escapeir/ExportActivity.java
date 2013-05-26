@@ -46,7 +46,7 @@ public class ExportActivity extends Activity {
 					return;
 				}
 				Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("application/octet-stream ");
+				intent.setType("application/zip");
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 				intent.putExtra(Intent.EXTRA_SUBJECT,"Share level");
 				intent.putExtra(Intent.EXTRA_TEXT, "This is my level for EscapeIr");
