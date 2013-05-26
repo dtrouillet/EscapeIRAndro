@@ -22,7 +22,7 @@ public class Missile extends Weapon{
 		setWorld(pWorld);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
-		bodyDef.bullet = false;
+		bodyDef.bullet = true;
 		setBodyDef(bodyDef);
 
 		FixtureDef fixtureDef = new FixtureDef();
@@ -41,7 +41,7 @@ public class Missile extends Weapon{
 		super(initMissile);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
-		bodyDef.bullet = false;
+		bodyDef.bullet = true;
 		setBodyDef(bodyDef);
 
 		FixtureDef fixtureDef = new FixtureDef();

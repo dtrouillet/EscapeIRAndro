@@ -27,7 +27,7 @@ public class SpaceShipHigh extends SpaceShip {
 			bodyDef.bullet = false;
 		}else{
 			bodyDef.position.set(Constant.WIDTH/2-40, Constant.HEIGHT - 100);
-			bodyDef.linearDamping = 1;
+			//bodyDef.linearDamping = 1;
 			rotateImage();
 		}
 		

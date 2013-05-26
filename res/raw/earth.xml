@@ -4,38 +4,15 @@
 		<map>jupiter.png</map>
 		<time>30</time>
 		<enemies>
-			<enemy type="2" track="1" nbr="1">2</enemy>
+			<enemy type="2" track="1" nbr="3">2</enemy>
 			<enemy type="3" track="1" nbr="1">5</enemy>
-			<enemy type="1" track="1" nbr="1">5</enemy>
-			<enemy type="2" track="1" nbr="1">5</enemy>
-			<enemy type="2" track="1" nbr="1">5</enemy>
+			<enemy type="1" track="1" nbr="1">10</enemy>
+			<enemy type="2" track="1" nbr="1">15</enemy>
+			<enemy type="1" track="1" nbr="3">15</enemy>
 			
 		</enemies>
 		<hero type="1" life="100">
-			<weapon ammo="10">1</weapon>
+			<weapon ammo="10">2</weapon>
 		</hero>
-	</level>
-		<level name="earth">
-		<map>moon.png</map>
-		<time>30</time>
-		<enemies>
-			<enemy type="2" track="1" nbr="1">2</enemy>
-			<enemy type="2" track="1" nbr="1">5</enemy>
-		</enemies>
-		<hero type="2" life="1000">
-			<weapon ammo="10">1</weapon>
-		</hero>
-		<boss type="1" life="200"/>
-	</level>
-		<level name="earth">
-		<map>earth.jpg</map>
-		<time>30</time>
-		<enemies>
-			<enemy type="2" track="1" nbr="1">2</enemy>
-			<enemy type="2" track="1" nbr="1">5</enemy>
-		</enemies>
-		<hero type="2" life="100">
-			<weapon ammo="10">1</weapon>
-		</hero>
-	</level>
+</level>
 </levels>
