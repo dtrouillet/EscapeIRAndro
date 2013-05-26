@@ -21,11 +21,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuActivity extends Activity {
 	private boolean menu = true;
+	private Context context;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		context = this;
 		Log.d("MenuActivity","onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
@@ -69,6 +72,8 @@ public class MenuActivity extends Activity {
 		Button jouerButton =  (Button) findViewById(R.id.jouer);
 		Button builderButton =  (Button) findViewById(R.id.builder);
 		Button quitterButton = (Button) findViewById(R.id.quitter);
+		Button importButton = (Button) findViewById(R.id.importLvl);
+		Button exportButton = (Button) findViewById(R.id.exporter);
 		
 		OnClickListener menuListener = new OnClickListener() {
 			ListView listeLvl;
@@ -77,50 +82,48 @@ public class MenuActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				menu = false;
-
 				Intent intent = null;
 				switch(arg0.getId()){
-				case R.id.jouer:
-					setContentView(R.layout.menu_level);
-					listeLvl = (ListView)findViewById(R.id.listeLvl);
-					txtLvl = (TextView)findViewById(R.id.textLvl);
-					File lvlMyDir = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath()); //pour créer le repertoire dans lequel on va mettre notre fichier
-
-					String[] listeStrings = lvlMyDir.list();
-					final ArrayAdapter<String> monAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listeStrings);
-					listeLvl.setAdapter(monAdapter);
-					txtLvl.setText("Choix du niveau");
-					txtLvl.setBackgroundColor(Color.GRAY);
-					txtLvl.setTextSize(20);
-					txtLvl.setPadding(15, 0, 0, 0);
-					listeLvl.setOnItemClickListener(new OnItemClickListener() {
-
-						@Override
-						public void onItemClick(AdapterView<?> arg0, View arg1,	int arg2, long arg3) {
-							Log.d("MenuActivity","lvlChoice = "+arg2+" lvl = "+monAdapter.getItem(arg2));
-							Intent myIntent = new Intent(MenuActivity.this, MainActivity.class);
-							Bundle b = new Bundle();
-							b.putString("pathLevel", monAdapter.getItem(arg2)); //Your id
-							myIntent.putExtras(b); //Put your id to your next Intent
-							MenuActivity.this.startActivity(myIntent); //intent must be declared
-						}
-					});
-					//intent = new Intent(MenuActivity.this, MainActivity.class);
-					break;
+					case R.id.importLvl: 
+						Toast.makeText(context, "To import a level go on the file .scir and choose import on EscapeIR", Toast.LENGTH_LONG).show();
+						break;
 					
-				case R.id.builder:  
-					intent = new Intent(MenuActivity.this, Builder.class);
-					MenuActivity.this.startActivity(intent); //intent must be declared
-					break;
-					
-				case R.id.quitter: finish();return;
-				
-				case R.id.importer: 
-					intent = new Intent(MenuActivity.this, ImportActivity.class);
-					MenuActivity.this.startActivity(intent); //intent must be declared
-					break;
-					
-				default: return;
+					case R.id.jouer:
+						setContentView(R.layout.menu_level);
+						listeLvl = (ListView)findViewById(R.id.listeLvl);
+						txtLvl = (TextView)findViewById(R.id.textLvl);
+						File lvlMyDir = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath()); //pour créer le repertoire dans lequel on va mettre notre fichier
+	
+						String[] listeStrings = lvlMyDir.list();
+						final ArrayAdapter<String> monAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listeStrings);
+						listeLvl.setAdapter(monAdapter);
+						txtLvl.setText("Choix du niveau");
+						txtLvl.setBackgroundColor(Color.GRAY);
+						txtLvl.setTextSize(20);
+						txtLvl.setPadding(15, 0, 0, 0);
+						listeLvl.setOnItemClickListener(new OnItemClickListener() {
+	
+							@Override
+							public void onItemClick(AdapterView<?> arg0, View arg1,	int arg2, long arg3) {
+								Log.d("MenuActivity","lvlChoice = "+arg2+" lvl = "+monAdapter.getItem(arg2));
+								Intent myIntent = new Intent(MenuActivity.this, MainActivity.class);
+								Bundle b = new Bundle();
+								b.putString("pathLevel", monAdapter.getItem(arg2)); //Your id
+								myIntent.putExtras(b); //Put your id to your next Intent
+								MenuActivity.this.startActivity(myIntent); //intent must be declared
+							}
+						});
+						//intent = new Intent(MenuActivity.this, MainActivity.class);
+						break;
+						
+					case R.id.builder:  
+						intent = new Intent(MenuActivity.this, Builder.class);
+						MenuActivity.this.startActivity(intent); //intent must be declared
+						break;
+						
+					case R.id.quitter: finish();return;
+						
+					default: return;
 				}
 
 				
@@ -131,6 +134,8 @@ public class MenuActivity extends Activity {
 		jouerButton.setOnClickListener(menuListener);
 		builderButton.setOnClickListener(menuListener);
 		quitterButton.setOnClickListener(menuListener);
+		importButton.setOnClickListener(menuListener);
+		exportButton.setOnClickListener(menuListener);
 	}
 
 	@Override
