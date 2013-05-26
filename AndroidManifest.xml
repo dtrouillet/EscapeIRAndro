@@ -68,11 +68,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />                
                 <category android:name="android.intent.category.DEFAULT" />
-	                <category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="file" />                               
-			 	 <data android:mimeType="*/*" />
-			    <data android:pathPattern=".*\\.scir" /> 
-				<data android:host="*" />
+			 	 <data android:mimeType="application/zip" />
+
             </intent-filter>
         </activity>
     </application>

@@ -60,7 +60,7 @@ public class ExportActivity extends Activity {
 
 	private String exportLevel(String value,String levelName) {
 		try {
-			String dest = Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+levelName+".scir";
+			String dest = Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+levelName+".zip";
 			System.out.println(dest);
 			 Utils.zipFile(value, dest);
 			 return dest;
