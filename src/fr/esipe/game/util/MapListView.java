@@ -47,8 +47,8 @@ public class MapListView extends ListView {
 		return new String(s/60+":"+s%60+"-"+e/60+":"+e%60);
 	}
 	private void updateTime(){
-		startTime=getFirstVisiblePosition()*Constant.SEC_P_MAP;
-		endTime=(1+getLastVisiblePosition())*Constant.SEC_P_MAP;
+		startTime=(getCount()-1-getLastVisiblePosition())*Constant.SEC_P_MAP;
+		endTime=(getCount()-getFirstVisiblePosition())*Constant.SEC_P_MAP;
 	}
 	private void updateTextView(){
 		if(tv!=null){
