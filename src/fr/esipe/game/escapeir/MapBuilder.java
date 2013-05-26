@@ -7,6 +7,10 @@ import java.util.List;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -21,6 +25,8 @@ import fr.esipe.game.util.MapLvl;
 
 public class MapBuilder extends Activity {
 	private ImageView selectedShip=null;
+	private MapListAdapter mla;
+	private View menuSelected=null;
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +44,11 @@ public class MapBuilder extends Activity {
 		}
 		ListView listView = ( ListView ) findViewById( R.id.listView1);
 		((MapListView)listView).setTextView((TextView) findViewById(R.id.textView1));
-		final MapListAdapter mla= new MapListAdapter(this, R.layout.map_row_item, listmaplvl );
+		mla= new MapListAdapter(this, R.layout.map_row_item, listmaplvl );
 		listView.setAdapter( mla );
 
 		listView.setSelection(listView.getCount()-1);
+
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -58,20 +65,22 @@ public class MapBuilder extends Activity {
 			public void onClick(View v) {
 				if(v.getTag()!=null)
 					if(((String)v.getTag()).contains("spaceship")){
-				if(selectedShip==null){
-					selectedShip=(ImageView) v;
-				}
-				else {
-					selectedShip.setBackgroundColor(0);
-					if(v.getId()==selectedShip.getId()){
-						selectedShip=null;
-						return;
-					}
-					selectedShip=(ImageView) v;
-				}
-				v.setBackgroundColor(Color.GREEN);
-			}}
+						if(selectedShip==null){
+							selectedShip=(ImageView) v;
+						}
+						else {
+							selectedShip.setBackgroundColor(0);
+							if(v.getId()==selectedShip.getId()){
+								selectedShip=null;
+								return;
+							}
+							selectedShip=(ImageView) v;
+						}
+						v.setBackgroundColor(Color.GREEN);
+					}}
 		};
+
+
 
 
 		for(int i=0;i<l.getChildCount();i++){
@@ -83,7 +92,33 @@ public class MapBuilder extends Activity {
 		}
 
 	}
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		menuSelected=v;
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.setHeaderTitle("Modify Ship");
+		menu.add(menu.NONE, 1, Menu.NONE, "Delete Ship");
+		menu.add(menu.NONE, 2, Menu.NONE, "Add move");
+	}
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
+		String viewinfo = menuSelected.getTag().toString();
+		String[] shipinfo = viewinfo.split("/");
+		switch (item.getItemId()) {
+		case 1:
+			mla.DeleteShip(Integer.parseInt(shipinfo[0]), Integer.parseInt(shipinfo[1]));
+			((RelativeLayout) menuSelected.getParent()).removeView(menuSelected);
+			break;
+
+		default:
+			break;
+		}
+		return super.onContextItemSelected(item);
+	}
 	public ImageView getSelectedShip() {
 		return selectedShip;
 	}

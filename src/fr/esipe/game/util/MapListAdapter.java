@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -43,6 +44,8 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 		}
 	};
 	
+	
+	
 	private class ShipOnMap {
 		public Drawable ship;
 		public RelativeLayout.LayoutParams param;
@@ -62,14 +65,17 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 				iv.setImageDrawable(selectedShip.getDrawable());
 				int h=fl.getHeight();
 				int w=fl.getWidth();
-				fl.addView(iv,params);
 				if(!ship.containsKey(position)){
 					ship.put(position, new LinkedList<ShipOnMap>());
 				}
 				ShipOnMap som= new ShipOnMap();
 				som.ship=iv.getDrawable();
 				som.param=params;
-				ship.get(position).add(som);
+				List<ShipOnMap> lship=ship.get(position);
+				lship.add(som);
+				iv.setTag(position+"/"+(lship.size()-1));
+				((MapBuilder)context).registerForContextMenu(iv);
+				fl.addView(iv,params);
 				fl.getLayoutParams().height=h;
 				fl.getLayoutParams().width=w;
 
@@ -93,10 +99,22 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 	    for(int i=0;i<nbspace;i++){
 	    	ImageView ship =new ImageView(context);
 	    	ship.setImageDrawable(lsom.get(i).ship);
+	    	ship.setTag(position+"/"+i);
 	    	(( RelativeLayout )convertView).addView(ship,lsom.get(i).param);
+	    	((MapBuilder)context).registerForContextMenu(ship);
 	    }}
 		return convertView;
 
 	}
+	
+	public void DeleteShip(int position, int index){
+		List<ShipOnMap>lship =ship.get(position);
+		if(lship!=null){
+			lship.remove(index);
+			if(lship.size()==0)
+				ship.remove(position);
+		}
+	}
+
 }
 
