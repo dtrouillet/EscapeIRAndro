@@ -24,7 +24,7 @@ public class MapListView extends ListView {
 		super(context,attrs,defStyle);
 		// 
 	}
-	
+
 	
 	@Override
 	protected void onScrollChanged(int l, int t, int oldl, int oldt) {

@@ -3,22 +3,15 @@ package fr.esipe.game.escapeir;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
-import android.R.color;
 import android.app.Activity;
-import android.app.ActionBar.LayoutParams;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View.OnClickListener;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.FrameLayout;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,13 +33,23 @@ public class MapBuilder extends Activity {
 		//Drawable image = Drawable.createFromPath(path);
 		MapLvl lvl=new MapLvl(path);
 		for(int i=0;i<nbmap;i++){
+			//MapLvl lvl=new MapLvl(path);
 			listmaplvl.add(lvl);
 		}
 		ListView listView = ( ListView ) findViewById( R.id.listView1);
 		((MapListView)listView).setTextView((TextView) findViewById(R.id.textView1));
-		listView.setAdapter( new MapListAdapter(this, R.layout.map_row_item, listmaplvl ) );
+		final MapListAdapter mla= new MapListAdapter(this, R.layout.map_row_item, listmaplvl );
+		listView.setAdapter( mla );
 
 		listView.setSelection(listView.getCount()-1);
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				mla.onClick(arg1, arg2);
+			}
+		});
 		RelativeLayout l=(RelativeLayout) findViewById(R.id.Linear);
 
 		OnClickListener ocl = new OnClickListener() {
