@@ -18,6 +18,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import fr.esipe.game.util.MapListAdapter;
 import fr.esipe.game.util.MapListView;
@@ -27,6 +28,7 @@ public class MapBuilder extends Activity {
 	private ImageView selectedShip=null;
 	private MapListAdapter mla;
 	private View menuSelected=null;
+	private boolean setmove=false;
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,7 @@ public class MapBuilder extends Activity {
 		((MapListView)listView).setTextView((TextView) findViewById(R.id.textView1));
 		mla= new MapListAdapter(this, R.layout.map_row_item, listmaplvl );
 		listView.setAdapter( mla );
-
 		listView.setSelection(listView.getCount()-1);
-
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -113,7 +113,9 @@ public class MapBuilder extends Activity {
 			mla.DeleteShip(Integer.parseInt(shipinfo[0]), Integer.parseInt(shipinfo[1]));
 			((RelativeLayout) menuSelected.getParent()).removeView(menuSelected);
 			break;
-
+		case 2:
+			mla.setMoveMode(true, Integer.parseInt(shipinfo[0]), Integer.parseInt(shipinfo[1]));
+			break;
 		default:
 			break;
 		}

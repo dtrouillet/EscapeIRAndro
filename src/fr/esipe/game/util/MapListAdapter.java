@@ -6,6 +6,7 @@ import java.util.Map;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +25,8 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 	private Context 		context;
 	private int x=0;
 	private int y=0;
+	private int movemodepostion;
+	private int movemodeindex;
 	private Map<Integer, List<ShipOnMap>> ship;
 	public MapListAdapter ( Context ctx, int resourceId, List<MapLvl> objects) {
 		
@@ -36,23 +39,61 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 	
 	private OnTouchListener otl=new OnTouchListener() {
 		
+		private boolean alwaysInMenu;
+
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
+			
+			if(MoveMode){
+				if(event.getAction()==MotionEvent.ACTION_UP&&alwaysInMenu){
+					alwaysInMenu=false;Log.d("SaveMOVE", "menu");
+					return true;
+					
+				}
+					Log.d("SaveMOVE", "MOOOOOVE");
+				if(Math.abs(x-(int) event.getX())>10||Math.abs(y-(int) event.getY())>10)
+				{
+				addmoveonShip((int) event.getX(), (int) event.getY());
+				}
+				if(event.getAction()==MotionEvent.ACTION_UP)
+					MoveMode=false;
+				return true;
+			}
 			x=(int) event.getX();
 			y=(int) event.getY();
 			return false;
 		}
 	};
+	private boolean MoveMode=false;
 	
 	
 	
 	private class ShipOnMap {
 		public Drawable ship;
 		public RelativeLayout.LayoutParams param;
+		int time=0;
+		Coord start=new Coord();
+			
+		public List<Coord> listmove=new LinkedList<Coord>();
 	}
-
-		
-
+private class Coord {
+				int x;
+				int y;
+			}
+		public void addmoveonShip(int x,int y){
+			List<ShipOnMap>lship =ship.get(movemodepostion);
+			Coord coord = new Coord();
+			coord.x=x;
+			coord.y=y;
+			if(lship!=null){
+				lship.get(movemodeindex).listmove.add(coord);
+			}
+		}
+		public void setMoveMode(boolean enable,int position,int index){
+			MoveMode=enable;
+			movemodeindex=index;
+			movemodepostion=position;
+		}
 		public void onClick(View v,int position) {
 			ImageView selectedShip=((MapBuilder)context).getSelectedShip();
 			if(selectedShip!=null){
