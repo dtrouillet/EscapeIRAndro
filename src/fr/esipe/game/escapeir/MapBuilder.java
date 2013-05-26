@@ -11,14 +11,15 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import fr.esipe.game.util.MapListAdapter;
 import fr.esipe.game.util.MapListView;
@@ -28,7 +29,6 @@ public class MapBuilder extends Activity {
 	private ImageView selectedShip=null;
 	private MapListAdapter mla;
 	private View menuSelected=null;
-	private boolean setmove=false;
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,13 @@ public class MapBuilder extends Activity {
 		mla= new MapListAdapter(this, R.layout.map_row_item, listmaplvl );
 		listView.setAdapter( mla );
 		listView.setSelection(listView.getCount()-1);
+		listView.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				return mla.onTouch(v, event);
+			}
+		});
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
