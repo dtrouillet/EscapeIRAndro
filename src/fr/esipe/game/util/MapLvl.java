@@ -16,6 +16,8 @@ public class MapLvl {
 		super();
 		this.image = decodeFile(new File(image2));
 	}
+	
+	
 	private Bitmap decodeFile(File f){
 		try {
 			//decode image size

@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_above="@+id/horizontalScrollView1"
         tools:listitem="@layout/map_row_item" 
+        android:background="#FF00FF00"
         >
     </fr.esipe.game.util.MapListView>
 
