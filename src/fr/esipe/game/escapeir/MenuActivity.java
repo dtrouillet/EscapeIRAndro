@@ -88,6 +88,10 @@ public class MenuActivity extends Activity {
 						Toast.makeText(context, "To import a level go on the file .scir and choose import on EscapeIR", Toast.LENGTH_LONG).show();
 						break;
 					
+					case R.id.exporter:
+						intent = new Intent(MenuActivity.this, ExportActivity.class);
+						MenuActivity.this.startActivity(intent); //intent must be declared
+						break;
 					case R.id.jouer:
 						setContentView(R.layout.menu_level);
 						listeLvl = (ListView)findViewById(R.id.listeLvl);
@@ -97,7 +101,7 @@ public class MenuActivity extends Activity {
 						String[] listeStrings = lvlMyDir.list();
 						final ArrayAdapter<String> monAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,listeStrings);
 						listeLvl.setAdapter(monAdapter);
-						txtLvl.setText("Choix du niveau");
+						txtLvl.setText("Choose your level to play");
 						txtLvl.setBackgroundColor(Color.GRAY);
 						txtLvl.setTextSize(20);
 						txtLvl.setPadding(15, 0, 0, 0);

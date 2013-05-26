@@ -2,14 +2,18 @@ package fr.esipe.game.util;
 
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 import org.jbox2d.common.Vec2;
 
@@ -96,4 +100,31 @@ public class Utils {
 		return true;
 	}
  
+    public static void zipFile(String source, String destination) throws FileNotFoundException, IOException {
+    	byte data[] = new byte[1024];
+    	System.out.println(destination);
+        FileOutputStream dest = new FileOutputStream(destination);
+        BufferedOutputStream buff = new BufferedOutputStream(dest);
+        ZipOutputStream out = new ZipOutputStream(buff);
+        File fileSource = new File(source);
+        String[] files = fileSource.list();
+        out.setMethod(ZipOutputStream.DEFLATED);
+        out.setLevel(9);
+        for(int i=0; i<files.length; i++) {
+        	System.out.println(files[i]);
+            FileInputStream fi = new FileInputStream(source+File.separator+files[i]);
+            BufferedInputStream buffi = new BufferedInputStream(fi, 1024);
+            ZipEntry entry = new ZipEntry(files[i]);      
+            out.putNextEntry(entry);        
+            int count;
+            while((count = buffi.read(data, 0, 1024)) != -1) {
+                out.write(data, 0, count);
+            }
+            out.closeEntry();
+            buffi.close();
+        }
+        out.flush(); 
+        out.close();
+        
+    }
 }
