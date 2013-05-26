@@ -56,6 +56,8 @@ public class MapBuilder extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				if(v.getTag()!=null)
+					if(((String)v.getTag()).contains("spaceship")){
 				if(selectedShip==null){
 					selectedShip=(ImageView) v;
 				}
@@ -68,7 +70,7 @@ public class MapBuilder extends Activity {
 					selectedShip=(ImageView) v;
 				}
 				v.setBackgroundColor(Color.GREEN);
-			}
+			}}
 		};
 
 
