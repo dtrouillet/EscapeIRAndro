@@ -56,11 +56,6 @@ public class MenuActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
-		
-
-
-
-
 	}
 
 	@Override
@@ -112,11 +107,19 @@ public class MenuActivity extends Activity {
 					});
 					//intent = new Intent(MenuActivity.this, MainActivity.class);
 					break;
+					
 				case R.id.builder:  
 					intent = new Intent(MenuActivity.this, Builder.class);
 					MenuActivity.this.startActivity(intent); //intent must be declared
 					break;
+					
 				case R.id.quitter: finish();return;
+				
+				case R.id.importer: 
+					intent = new Intent(MenuActivity.this, ImportActivity.class);
+					MenuActivity.this.startActivity(intent); //intent must be declared
+					break;
+					
 				default: return;
 				}
 

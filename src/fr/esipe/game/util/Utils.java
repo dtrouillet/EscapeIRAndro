@@ -1,6 +1,16 @@
 package fr.esipe.game.util;
 
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+
 import org.jbox2d.common.Vec2;
 
 import android.content.Context;
@@ -54,4 +64,36 @@ public class Utils {
     	Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     	return rotated;
       }
+    
+    public static boolean extractAll(InputStream is, String path) throws IOException {
+ 
+		// Create folder(s)
+		
+		File file = new File(path);
+		if(file.exists())
+			return false;
+		
+		File folder = new File(path);
+		folder.mkdirs();
+		
+		final ZipInputStream zis = new ZipInputStream(new BufferedInputStream(is));
+ 
+		ZipEntry ze;
+		while ((ze = zis.getNextEntry()) != null) {
+ 
+			final OutputStream output = new FileOutputStream(new File(folder,ze.getName()));
+			final byte data[] = new byte[1024];
+ 
+			int count;
+			while ((count = zis.read(data)) != -1)
+				output.write(data, 0, count);
+ 
+			output.flush();
+			output.close();
+		}
+ 
+		zis.close();
+		return true;
+	}
+ 
 }
