@@ -1,8 +1,11 @@
 package fr.esipe.game.util;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import org.xmlpull.v1.XmlSerializer;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import fr.esipe.game.escapeir.MapBuilder;
 
 public class MapListAdapter extends ArrayAdapter<MapLvl> {
@@ -38,6 +42,20 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 	/*private OnTouchListener otl=new OnTouchListener() {
 
 		@Override*/
+
+	public void setxml(XmlSerializer xml) throws IllegalArgumentException, IllegalStateException, IOException{
+		for (List<ShipOnMap> list : ship.values()) {
+			for (ShipOnMap ship : list) {
+				xml.startTag("", "enemy").attribute("", "type", ship.type).attribute("", "weapon", ship.weapon);
+				xml.attribute("", "time", ""+ship.time).attribute("", "startx", ""+ship.start.x);
+				for (Coord coord : ship.listmove) {
+					xml.startTag("", "move").attribute("", "x", ""+coord.x).attribute("", "y", ""+coord.y).endTag("", "move");
+				}
+				xml.endTag("", "enemy");
+			}
+		}
+	}
+	
 	public boolean onTouch(View v, MotionEvent event) {
 
 		if(MoveMode){
@@ -62,6 +80,8 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 	private class ShipOnMap {
 		public Drawable ship;
 		public RelativeLayout.LayoutParams param;
+		public String type;
+		public String weapon;
 		int time=0;
 		Coord start=new Coord();
 
@@ -85,12 +105,18 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 		movemodeindex=index;
 		movemodepostion=position;
 	}
-	public void onClick(View v,int position) {
+	public void onClick(View v,int position,int countitem) {
 		ImageView selectedShip=((MapBuilder)context).getSelectedShip();
 		if(selectedShip!=null){
+			ShipOnMap som= new ShipOnMap();
 			RelativeLayout fl = (RelativeLayout) v;
-			MapLvl map = getItem( position);
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(selectedShip.getWidth(), selectedShip.getHeight());
+			som.start.x=x;
+			som.start.y=y-v.getTop();
+			som.time=(countitem-1-position)*3+1;
+			String[] shipinfo=((String) selectedShip.getTag()).split(":");
+			som.type=shipinfo[0];
+			som.weapon=shipinfo[1];
 			params.leftMargin=x-(selectedShip.getWidth()/2);
 			params.topMargin=y-v.getTop()-(selectedShip.getHeight()/2);
 			ImageView iv = new ImageView(context);
@@ -100,7 +126,7 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 			if(!ship.containsKey(position)){
 				ship.put(position, new LinkedList<ShipOnMap>());
 			}
-			ShipOnMap som= new ShipOnMap();
+			
 			som.ship=iv.getDrawable();
 			som.param=params;
 			List<ShipOnMap> lship=ship.get(position);
@@ -119,9 +145,6 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 
 		convertView = ( RelativeLayout ) inflater.inflate( resource, null );
 
-		if(/*ocl!=null&&otl!=null*/1==1){
-			//convertView.setOnTouchListener(otl);
-		}
 		MapLvl map = getItem( position );
 		ImageView iv=(ImageView) ((RelativeLayout) convertView).getChildAt(0);
 		iv.setImageBitmap(map.getImage());
