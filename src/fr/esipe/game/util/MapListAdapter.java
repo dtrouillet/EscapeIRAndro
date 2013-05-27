@@ -59,7 +59,7 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 
 		if(MoveMode){
 			Log.d("SaveMOVE", "MOOOOOVE");
-			if(Math.abs(x-(int) event.getX())>10||Math.abs(y-(int) event.getY())>10)
+			if(Math.abs(x-(int) event.getX())>30||Math.abs(y-(int) event.getY())>30)
 			{
 				addmoveonShip((int) event.getX(), (int) event.getY());
 			}
