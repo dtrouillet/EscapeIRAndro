@@ -43,9 +43,9 @@ public class ParserXmlHandler extends DefaultHandler {
 
 	// Boolean permettant de savoir si nous sommes �� l'int��rieur d'un item
 	private boolean inItem;
-	private double x;
-	private double y;
-	private double startX;
+	private int x;
+	private int y;
+	private int startX;
 
 	// Feed courant
 	private LevelXml levelXml;
@@ -115,7 +115,7 @@ public class ParserXmlHandler extends DefaultHandler {
 					timeEnemy = Integer.parseInt(attributes.getValue(i));
 				}
 				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_STARTX)){
-					startX = Double.parseDouble(attributes.getValue(i));
+					startX = Integer.parseInt(attributes.getValue(i));
 				}
 				move = new ArrayList<Vec2>();
 //				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_NBR)){
@@ -127,10 +127,10 @@ public class ParserXmlHandler extends DefaultHandler {
 		if (localName.equalsIgnoreCase(ENEMY_MOVE)){
 			for(int i = 0; i < attributes.getLength(); i++){
 				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_MOVE_X)){
-					x = Double.parseDouble(attributes.getValue(i));
+					x = Integer.parseInt(attributes.getValue(i));
 				}
 				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_MOVE_Y)){
-					y = Double.parseDouble(attributes.getValue(i));
+					y = Integer.parseInt(attributes.getValue(i));
 				}
 			}
 		}
@@ -190,8 +190,7 @@ public class ParserXmlHandler extends DefaultHandler {
 				this.levelXml.setEnemyMove(move);
 				this.levelXml.addEnemyTime(timeEnemy);
 				//this.levelXml.addEnemyTrack(trackEnemy);
-				int myStartX = (int)((startX/100)*Constant.WIDTH);
-				this.levelXml.addEnemyStart(myStartX);
+				this.levelXml.addEnemyStart(startX);
 				//}
 				
 				typeEnemy = null;
@@ -203,9 +202,7 @@ public class ParserXmlHandler extends DefaultHandler {
 		
 		if (localName.equalsIgnoreCase(ENEMY_MOVE)){
 			System.out.println("MOVE ATTRIBUTE");
-			int myX = (int)((x/100)*Constant.WIDTH);
-			int myY = (int)((y/100)*Constant.HEIGHT);
-			move.add(new Vec2(myX,myY));
+			move.add(new Vec2(x,y));
 		}
 		
 		if (localName.equalsIgnoreCase(WEAPON)){
