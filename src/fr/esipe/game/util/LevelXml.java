@@ -1,8 +1,11 @@
  package fr.esipe.game.util;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import fr.esipe.game.escapeir.Level;
 
@@ -111,9 +114,10 @@ public class LevelXml {
 		this.levelName = levelName;
 	}
 	
-	public Level xmlToLevel(Context context){
-		int resID = context.getResources().getIdentifier(mapName , "drawable", context.getPackageName());
-		 Level level = new Level(levelName,Utils.createImage(context,resID),context);
+	public Level xmlToLevel(Context context,String nameLevel){
+		//int resID = context.getResources().getIdentifier(mapName , "drawable", context.getPackageName());
+		Bitmap bitmap = BitmapFactory.decodeFile(context.getDir("level",Context.MODE_PRIVATE).getAbsolutePath()+File.separator+nameLevel+File.separator+"map.png");
+		 Level level = new Level(levelName,bitmap,context);
 		 level.setTime(time);	 
 		 Log.d("init","taille enemyTime = "+enemyTime.size()+" enemyType = "+enemyType.size()+" enemyTrack = "+enemyTrack.size());
 		 level.setParamEnemy(enemyTime, enemyType, enemyTrack);

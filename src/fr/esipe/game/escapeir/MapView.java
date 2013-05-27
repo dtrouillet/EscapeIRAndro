@@ -170,6 +170,7 @@ private class GameThread extends Thread {
 
     private Bitmap weaponShibooleetActivate;
     private Bitmap weaponShibooleetDesactivate;
+    private String levelName;
 
    // private Bitmap lifeMiddle;
     //private Bitmap lifeLow;
@@ -197,7 +198,6 @@ private class GameThread extends Thread {
     public GameThread(SurfaceHolder holder, Context context) {
         this.holder = holder;
         this.context = context;
-        this.tiles = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.earth);
         this.weaponMissileActivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponmissilea);
         this.weaponMissileDesactivate = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.weaponmissiled);
 
@@ -218,6 +218,8 @@ private class GameThread extends Thread {
 
     public void setLevel(String pathLevel){
     	listLevel =  XmlLoader.getFeeds(context,pathLevel);
+    	levelName = pathLevel;
+    	System.out.println(levelName);
     }
     
     /**
@@ -259,7 +261,9 @@ private class GameThread extends Thread {
         Log.d("thread", "Game thread started");
         //Log.d("XML","taille listLevel = "+listLevel.size());
         while(listLevel == null);
-        Level level = listLevel.get(0).xmlToLevel(context);;
+        Level level = listLevel.get(0).xmlToLevel(context,levelName);
+        this.tiles = level.getImage();
+
         world = level.getWorld();
 		hero = level.getHero();
 		

@@ -49,6 +49,14 @@ public class MenuActivity extends Activity {
 				while ((i = input.read()) != -1) {
 				   output.write(i);
 				}
+				
+				myFile = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath() + File.separator + "earth","map.png"); //on déclare notre futur fichier
+				output = new FileOutputStream(myFile,false);
+				input = getResources().openRawResource(R.drawable.earth);
+				i = 0;
+				while ((i = input.read()) != -1) {
+				   output.write(i);
+				}
 				//System.out.println(myFile.getAbsolutePath());
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
