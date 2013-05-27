@@ -55,18 +55,13 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 		}
 	}
 	
-	
-	public double getPourcent(int point, int size){
-		return (100*new Integer(point).doubleValue())/new Integer(size).doubleValue();
-	}
 	public boolean onTouch(View v, MotionEvent event) {
-	
+
 		if(MoveMode){
 			Log.d("SaveMOVE", "MOOOOOVE");
 			if(Math.abs(x-(int) event.getX())>10||Math.abs(y-(int) event.getY())>10)
 			{
-				//addmoveonShip((int) event.getX(), (int) event.getY());
-				addmoveonShip(getPourcent((int) event.getX(), v.getWidth()), getPourcent((int) event.getY(), v.getHeight()));
+				addmoveonShip((int) event.getX(), (int) event.getY());
 			}
 			if(event.getAction()==MotionEvent.ACTION_UP)
 				MoveMode=false;
@@ -92,14 +87,14 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 		public List<Coord> listmove=new LinkedList<Coord>();
 	}
 	private class Coord {
-		double x;
-		double y;
+		int x;
+		int y;
 	}
-	public void addmoveonShip(double d,double e){
+	public void addmoveonShip(int x,int y){
 		List<ShipOnMap>lship =ship.get(movemodepostion);
 		Coord coord = new Coord();
-		coord.x=d;
-		coord.y=e;
+		coord.x=x;
+		coord.y=y;
 		if(lship!=null){
 			lship.get(movemodeindex).listmove.add(coord);
 		}
@@ -115,10 +110,8 @@ public class MapListAdapter extends ArrayAdapter<MapLvl> {
 			ShipOnMap som= new ShipOnMap();
 			RelativeLayout fl = (RelativeLayout) v;
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(selectedShip.getWidth(), selectedShip.getHeight());
-			/*som.start.x=x;
-			som.start.y=y-v.getTop();*/
-			som.start.x=getPourcent(x, v.getWidth());
-			som.start.y=getPourcent(y-v.getTop(), v.getHeight());
+			som.start.x=x;
+			som.start.y=y-v.getTop();
 			som.time=(countitem-1-position)*3+1;
 			String[] shipinfo=((String) selectedShip.getTag()).split(":");
 			som.type=shipinfo[0];
