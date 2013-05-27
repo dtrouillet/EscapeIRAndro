@@ -16,7 +16,6 @@ import android.util.Xml;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +44,7 @@ public class MapBuilder extends Activity {
 			try {
 				xml.setOutput(new FileOutputStream((String)getIntent().getExtras().get("mappath")+File.separator+"map.xml"), "UTF-8");
 				xml.startDocument("UTF-8", true);
+				xml.startTag("", "levels");
 				xml.startTag("", "level");
 				xml.startTag("", "time").text(getIntent().getExtras().get("time").toString()).endTag("", "time");
 				xml.startTag("", "enemies");
@@ -52,7 +52,15 @@ public class MapBuilder extends Activity {
 				
 				
 				xml.endTag("", "enemies");
+				xml.startTag("", "hero");
+				xml.attribute("", "type", "1");
+				xml.attribute("", "life","100");
+				xml.startTag("","weapon");
+				xml.attribute("", "ammo", "10000").text("1");
+				xml.endTag("", "weapon");
+				xml.endTag("", "hero");
 				xml.endTag("", "level");
+				xml.endTag("", "levels");
 				xml.endDocument();
 				xml.flush();
 			} catch (IllegalArgumentException e) {

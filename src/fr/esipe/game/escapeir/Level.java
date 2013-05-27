@@ -29,6 +29,7 @@ public class Level {
 	private final Context context;
 	private int lifeHero;
 	private List<Integer> listTime = new ArrayList<Integer>();
+	private List<Track> listTrack = new ArrayList<Track>();
 	//private List<Integer> listTrack;
 	private List<Integer> listType = new ArrayList<Integer>();
 	private List<Integer> listTypeWeapon = new ArrayList<Integer>();
@@ -62,14 +63,10 @@ public class Level {
 	}
 
 	public void addEnemyInList(ArrayList<SpaceShip> listEnemy, int time){
-		Track t = new Track(new Vec2(200,0));
-		t.add(new Vec2(10, 400));
-		t.add(new Vec2(200, 400));
-		t.add(new Vec2(500,500));
-		t.setTrackLoop(1);
+		
 		for(int i = nbrEnemies; i < listTime.size(); i++){
 			if(listTime.get(i) <= time){
-				listEnemy.add(enemiesFactory.getEnemie(listType.get(i),t,context));
+				listEnemy.add(enemiesFactory.getEnemie(listType.get(i),listTrack.get(i),context));
 				nbrEnemies++;
 			
 			}
@@ -104,11 +101,13 @@ public class Level {
 		//TODO mettre en place le temps
 	}
 	
-	public void setParamEnemy(List<Integer> pListTime, List<Integer> pListType, List<Integer> pListTrack){
+	public void setParamEnemy(List<Integer> pListTime, List<Integer> pListType, List<Track> pListTrack){
 		listTime.addAll(pListTime);
 		listType.addAll(pListType);
+		listTrack.addAll(pListTrack);
 		Collections.sort(listTime);
 		Collections.sort(listType);
+
 		//listTrack = pListTrack;
 		//TODO mettre en place les circuits
 	}

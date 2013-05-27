@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class Builder extends Activity {
  
@@ -63,7 +62,7 @@ private void Mysave(){
 	}else{
 		File level = new File(getDir("level",Context.MODE_PRIVATE).getAbsolutePath() + File.separator + name.getText().toString());
 		if (!level.exists()) {
-			level.mkdir(); //On crée le répertoire (s'il n'existe pas!!)
+			level.mkdir(); //On cr��e le r��pertoire (s'il n'existe pas!!)
 		}
 		//iv.setDrawingCacheEnabled(true);
 		//Bitmap bitmap = iv.getDrawingCache();

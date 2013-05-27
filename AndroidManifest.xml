@@ -68,7 +68,10 @@
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />                
                 <category android:name="android.intent.category.DEFAULT" />
+               <category android:name="android.intent.category.BROWSABLE" />
+                
 			 	 <data android:mimeType="application/zip" />
+			 	 <data android:pathPattern=".*\\.zip" />
 
             </intent-filter>
         </activity>

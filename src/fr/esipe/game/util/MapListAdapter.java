@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import fr.esipe.game.escapeir.MapBuilder;
 
 public class MapListAdapter extends ArrayAdapter<MapLvl> {

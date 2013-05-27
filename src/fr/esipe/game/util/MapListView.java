@@ -2,7 +2,6 @@ package fr.esipe.game.util;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 

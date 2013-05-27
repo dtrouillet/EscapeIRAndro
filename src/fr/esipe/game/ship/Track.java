@@ -8,11 +8,15 @@ import java.util.NoSuchElementException;
 import org.jbox2d.common.Vec2;
 
 public class Track {
-	private final Vec2 spawn;
+	private Vec2 spawn;
 	private int loop=-1;
 	private final ArrayList<Vec2> track;
 	public Track(Vec2 Spawn) {
 		this.spawn=Spawn;
+		track=new ArrayList<Vec2>();
+	}
+	
+	public Track() {
 		track=new ArrayList<Vec2>();
 	}
 	public void addAll(List<Vec2> Positions){
@@ -60,6 +64,10 @@ public class Track {
 				throw new UnsupportedOperationException();
 			}
 		};
+	}
+	public void startx(Vec2 startX) {
+		spawn = startX;
+		
 	}
 	
 	

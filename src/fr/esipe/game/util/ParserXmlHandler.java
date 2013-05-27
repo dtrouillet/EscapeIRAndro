@@ -2,6 +2,7 @@ package fr.esipe.game.util;
 
 import java.util.ArrayList;
 
+import org.jbox2d.common.Vec2;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -18,8 +19,11 @@ public class ParserXmlHandler extends DefaultHandler {
 	
 	private static final String ENEMY = "enemy";
 	private static final String ENEMY_TYPE = "type";
-	private static final String ENEMY_NBR = "nbr";
-	private static final String ENEMY_TRACK = "track";
+	private static final String ENEMY_TIME = "time";
+	private static final String ENEMY_MOVE = "move";
+	private static final String ENEMY_MOVE_X = "x";
+	private static final String ENEMY_MOVE_Y = "y";
+	private static final String ENEMY_STARTX = "startx";
 	
 	private static final String HERO = "hero";
 	private static final String HERO_TYPE = "type";
@@ -28,16 +32,20 @@ public class ParserXmlHandler extends DefaultHandler {
 	private static final String WEAPON = "weapon";
 	private static final String WEAPON_AMMO = "ammo";
 	
-	private int typeEnemy;
-	private int nbrEnemy;
-	private int trackEnemy;
+	private String typeEnemy;
+	private int timeEnemy;
 	private int ammoWeapon;
+	
+	private ArrayList<Vec2> move;
 
 	// Array list de feeds
 	private ArrayList<LevelXml> entries;
 
 	// Boolean permettant de savoir si nous sommes �� l'int��rieur d'un item
 	private boolean inItem;
+	private int x;
+	private int y;
+	private int startX;
 
 	// Feed courant
 	private LevelXml levelXml;
@@ -98,15 +106,31 @@ public class ParserXmlHandler extends DefaultHandler {
 			// Nothing to do
 		}
 		if (localName.equalsIgnoreCase(ENEMY)){
+			System.out.println("ENEMY");
 			for(int i = 0; i < attributes.getLength(); i++){
 				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_TYPE)){
-					typeEnemy = Integer.parseInt(attributes.getValue(i));
+					typeEnemy = attributes.getValue(i);
 				}
-				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_TRACK)){
-					trackEnemy = Integer.parseInt(attributes.getValue(i));
+				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_TIME)){
+					timeEnemy = Integer.parseInt(attributes.getValue(i));
 				}
-				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_NBR)){
-					nbrEnemy = Integer.parseInt(attributes.getValue(i));
+				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_STARTX)){
+					startX = Integer.parseInt(attributes.getValue(i));
+				}
+				move = new ArrayList<Vec2>();
+//				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_NBR)){
+//					nbrEnemy = Integer.parseInt(attributes.getValue(i));
+//				}
+			}
+		}
+		
+		if (localName.equalsIgnoreCase(ENEMY_MOVE)){
+			for(int i = 0; i < attributes.getLength(); i++){
+				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_MOVE_X)){
+					x = Integer.parseInt(attributes.getValue(i));
+				}
+				if(attributes.getQName(i).equalsIgnoreCase(ENEMY_MOVE_Y)){
+					y = Integer.parseInt(attributes.getValue(i));
 				}
 			}
 		}
@@ -160,17 +184,25 @@ public class ParserXmlHandler extends DefaultHandler {
 		
 		if (localName.equalsIgnoreCase(ENEMY)){
 			if(inItem){		
-				for(int i = 0; i < nbrEnemy; i++){
-					this.levelXml.addEnemyTime(Integer.parseInt(buffer.toString()));
-					this.levelXml.addEnemyTrack(trackEnemy);
-					this.levelXml.addEnemyType(typeEnemy);
-				}
+				//for(int i = 0; i < nbrEnemy; i++){
+				this.levelXml.addEnemyType(typeEnemy);
+
+				this.levelXml.setEnemyMove(move);
+				this.levelXml.addEnemyTime(timeEnemy);
+				//this.levelXml.addEnemyTrack(trackEnemy);
+				this.levelXml.addEnemyStart(startX);
+				//}
 				
-				trackEnemy = 0;
-				typeEnemy = 0;
-				nbrEnemy = 0;
+				typeEnemy = null;
+				timeEnemy = 0;
 				buffer = null;
+				startX = 0;
 			}
+		}
+		
+		if (localName.equalsIgnoreCase(ENEMY_MOVE)){
+			System.out.println("MOVE ATTRIBUTE");
+			move.add(new Vec2(x,y));
 		}
 		
 		if (localName.equalsIgnoreCase(WEAPON)){
