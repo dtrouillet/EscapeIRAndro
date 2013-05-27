@@ -5,6 +5,20 @@
     <string name="action_settings_pause">Pause</string>
     <string name="action_settings_return">Retour menu</string>
     <string name="action_settings_exit">Quitter</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="menu_builder">Builder</string>
+    <string name="menu_play">Play</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_import">Import</string>
+    <string name="menu_export">Export</string>
+    <string name="import_alert_title">Import level</string>
+    <string name="import_alert_description">Type your name level : </string>
+    <string name="builder_desc_name">Level name : </string>
+    <string name="builder_desc_time">Level time : </string>
+    <string name="builder_desc_background">Level background : </string>
+    <string name="builder_desc_name_hint">Your name level</string>
+    <string name="builder_desc_time_hint">Your time level (mm:ss)</string>
+    <string name="builder_desc_background_button">Choose your background</string>
+    <string name="builder_desc_save_button">Save</string>
+    <string name="builder_desc_error">Error(s) in entry(ies)</string>
 
 </resources>

@@ -12,7 +12,7 @@
       android:layout_alignParentTop="true"
       android:layout_centerHorizontal="true"
       android:layout_marginTop="55dp"
-      android:text="Builder"
+      android:text="@string/menu_builder"
       android:textSize="48sp"
       android:textStyle="bold" />
 
@@ -23,7 +23,7 @@
       android:layout_alignLeft="@+id/jouer"
       android:layout_below="@+id/jouer"
       android:layout_marginTop="16dp"
-      android:text="Quitter"
+      android:text="@string/menu_exit"
       android:textSize="48sp"
       android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
       android:layout_alignLeft="@+id/builder"
       android:layout_below="@+id/builder"
       android:layout_marginTop="16dp"
-      android:text="Jouer"
+      android:text="@string/menu_play"
       android:textSize="48sp"
       android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
       android:layout_alignLeft="@+id/quitter"
       android:layout_below="@+id/quitter"
       android:layout_marginTop="16dp"
-      android:text="Import"
+      android:text="@string/menu_import"
       android:textSize="24sp"
       android:textStyle="bold" />
 
@@ -55,7 +55,7 @@
         android:layout_height="50dip"
         android:layout_alignLeft="@+id/importLvl"
         android:layout_below="@+id/importLvl"
-        android:text="Export"
+        android:text="@string/menu_export"
         android:textSize="24sp"
         android:textStyle="bold" />
 

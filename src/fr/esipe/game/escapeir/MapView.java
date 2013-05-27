@@ -8,15 +8,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
-import fr.esipe.game.ship.BodyContactListener;
-import fr.esipe.game.ship.Bonus;
-import fr.esipe.game.ship.Information;
-import fr.esipe.game.ship.SpaceShip;
-import fr.esipe.game.util.Constant;
-import fr.esipe.game.util.LevelXml;
-import fr.esipe.game.util.XmlLoader;
-import fr.esipe.game.weapon.Ammo;
-import fr.esipe.game.weapon.Weapon;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -33,6 +24,15 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
+import fr.esipe.game.ship.BodyContactListener;
+import fr.esipe.game.ship.Bonus;
+import fr.esipe.game.ship.Information;
+import fr.esipe.game.ship.SpaceShip;
+import fr.esipe.game.util.Constant;
+import fr.esipe.game.util.LevelXml;
+import fr.esipe.game.util.XmlLoader;
+import fr.esipe.game.weapon.Ammo;
+import fr.esipe.game.weapon.Weapon;
 
 /**
  * The bitmap game surface.
@@ -134,7 +134,7 @@ private class GameThread extends Thread {
 	public float timeStep = 1.0f / targetFPS;
     /** The surface width and height. */
     //private int width = 0;
-    public boolean gameOver = false;
+    //public boolean gameOver = false;
     //private int height = 0;
     
     private float positionEventX = -1;
@@ -318,7 +318,7 @@ private class GameThread extends Thread {
 	                }
 	            }
         	}else{
-        		gameOver = true;
+        		//gameOver = true;
         		Canvas canvas = null;
         		try{
 	                canvas = holder.lockCanvas(null);

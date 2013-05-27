@@ -20,7 +20,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.webkit.MimeTypeMap;
 
 /**
  * This class includes all useful methods to the whole game

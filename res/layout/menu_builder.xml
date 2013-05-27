@@ -10,7 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
-        android:text="Level Name :"
+        android:text="@string/builder_desc_name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <TextView
         android:id="@+id/textView2"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView1"
         android:layout_marginTop="20dp"
-        android:text="Level Time :"
+        android:text="@string/builder_desc_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <TextView
         android:id="@+id/textView3"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView2"
         android:layout_marginTop="20dp"
-        android:text="Background :"
+        android:text="@string/builder_desc_background"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -37,7 +37,7 @@
         android:layout_toRightOf="@+id/textView2"
         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
         android:ems="10"
-        android:hint="Name"
+        android:hint="@string/builder_desc_name_hint"
         android:inputType="text" >
 
     </EditText>
@@ -49,7 +49,7 @@
         android:layout_alignBaseline="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"
         android:ems="10"
-        android:hint="Min:Sec"
+        android:hint="@string/builder_desc_time_hint"
         android:inputType="time" >
 
     </EditText>
@@ -61,7 +61,7 @@
         android:layout_alignRight="@+id/editText2"
         android:layout_alignTop="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
-        android:text="Add Background" />
+        android:text="@string/builder_desc_background_button" />
 
     <Button
         android:id="@+id/button2"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Save" />
+        android:text="@string/builder_desc_save_button" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Wrong Entry(s)"
+        android:text="@string/builder_desc_error"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ff0000"
         android:visibility="gone" />
